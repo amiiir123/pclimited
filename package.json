@@ -38,6 +38,7 @@
     "resize-observer-polyfill": "^1.5.1",
     "simplebar": "^6.2.7",
     "socket.io": "^4.7.5",
+    "styled-jsx": "^5.1.6",
     "validator": "^13.12.0"
   }
 }
