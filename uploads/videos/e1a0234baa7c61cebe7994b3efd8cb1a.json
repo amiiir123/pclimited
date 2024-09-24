@@ -1,0 +1,30 @@
+[
+  {
+    "fullName": "user1",
+    "email": "ok@ok11.com",
+    "password": "$2b$10$Oqi3pKOuNn.GKONfMzgg3.BIy.ZFLAjOjLhVsa5P290FC.tjvwRS6",
+    "role": "ADMIN",
+    "bio": "i am software engineer ...",
+    "location": "Sad",
+    "mobile": "0675105556",
+    "isActive": false
+  },
+  {
+    "fullName": "user2",
+    "email": "ok3@ok44.com",
+    "password": "$2b$10$kuR6g1bMWS4efcHG/OdSNel8Q8sVYDsSoSqMm4TqaLafV3MlMwIRW",
+    "role": "USER"
+  },
+  {
+    "fullName": "user4",
+    "email": "ok4@ok333.com",
+    "password": "$2b$10$ECPu/GxMtSgWzcQe/HP4XOgvQWRzIGwOh8qB/Wu2XJK6RuTxcs/Sq",
+    "role": "USER"
+  },
+  {
+    "fullName": "user88",
+    "email": "itsazhary11@gmail.com",
+    "password": "$2b$10$OoA7pDQHoxFibMvpM26Z.eouqeKlzOwcsAhnXJFJCHOtOhYL1v9cC",
+    "role": "USER"
+  }
+]

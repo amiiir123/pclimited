@@ -1,0 +1,27 @@
+[
+  {
+    "fullName": "user1 pro",
+    "email": "okpro@ok11.com",
+    "password": "$2b$10$Oqi3pKOuNn.GKONfMzgg3.BIy.ZFLAjOjLhVsa5P290FC.tjvwRS6",
+    "role": "ADMIN"
+
+  },
+  {
+    "fullName": "user2 pro",
+    "email": "ok3pro@ok44.com",
+    "password": "$2b$10$kuR6g1bMWS4efcHG/OdSNel8Q8sVYDsSoSqMm4TqaLafV3MlMwIRW",
+    "role": "USER"
+  },
+  {
+    "fullName": "user4pro",
+    "email": "ok4pro@ok.com",
+    "password": "$2b$10$ECPu/GxMtSgWzcQe/HP4XOgvQWRzIGwOh8qB/Wu2XJK6RuTxcs/Sq",
+    "role": "USER"
+  },
+  {
+    "fullName": "user88pro",
+    "email": "itsazhary1221pro@gmail.com",
+    "password": "$2b$10$OoA7pDQHoxFibMvpM26Z.eouqeKlzOwcsAhnXJFJCHOtOhYL1v9cC",
+    "role": "USER"
+  }
+]
