@@ -342,9 +342,7 @@ const fs = require("fs");
 // Create directories if they don't exist
 const imgDir = "../uploads/imgs";
 const imgDir2 = "uploads/imgs";
-const videoDir = "../uploads/videos";
 if (!fs.existsSync(imgDir)) fs.mkdirSync(imgDir, { recursive: true });
-if (!fs.existsSync(videoDir)) fs.mkdirSync(videoDir, { recursive: true });
 
 // Set storage engine
 const storage = multer.diskStorage({

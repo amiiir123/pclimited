@@ -17,7 +17,6 @@ const fs = require('fs');
 
 // Create directories if they don't exist
 const imgDir2 = 'uploads/imgs';
-const videoDir = 'uploads/videos';
 const imgL = 'uploads/imgs/landing';
 if (!fs.existsSync(imgDir)) fs.mkdirSync(imgDir, { recursive: true });
 if (!fs.existsSync(imgL)) fs.mkdirSync(imgL, { recursive: true });
