@@ -1,14 +1,16 @@
 const express = require('express')
 const app = express.Router()
-const nodemailer = require('nodemailer');
+
 require('dotenv').config();
 
+const nodemailer = require('nodemailer');
 const controllerUser = require('../controller/user.controller')
 const controllerBlog = require('../controller/blog.controller')
 const Logout = require('../controller/user.controller')
 const userss  = require('../models/user.md')
 //midellware
 const verifyLogin = require('../middleware/verify.token')
+
 //database
 const {Blog,categoryy}=require('../models/blog.md');
 const { findOne } = require('../models/user.md');
