@@ -4,7 +4,12 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+<<<<<<< HEAD
     "start": "nodemon server.js"
+=======
+    "start": "node server.js",
+    "build": "echo 'No build step required"
+>>>>>>> d608a912940524dd45f417cf43883f074c11dd07
   },
   "keywords": [],
   "author": "",
