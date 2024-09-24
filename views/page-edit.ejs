@@ -1,0 +1,62 @@
+<div class="row">
+    <div class="col-12">
+        <div class="page-title-box">
+            <h4 class="page-title"> Update Page</h4>
+        </div>
+    </div>
+</div>
+<!-- end page title -->
+
+<div class="row">
+    <div class="col-12">
+        <form id="dataForm" action='pages/update/<%= mypage._id %>' method="POST">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="d-grid">
+                                <div class="mb-3">
+                                    <label for="simpleinput" class="form-label">Title</label>
+                                    <input type="text" id="simpleinput" class="form-control" name="title" value="<%= mypage.title || '' %>">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="simpleinput" class="form-label">Link</label>
+                                    <input type="text" id="simpleinput" class="form-control" name="description" value="<%= mypage.link || '' %>">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="d-grid">
+                                <div id="snow-editor" style="height: 300px;">
+                                    <h3><span class="ql-size-large">Hello World!</span></h3>
+                                    <p><br></p>
+                                    <h3>This is a simple editable area.</h3>
+                                    <p><br></p>
+                                    <ul>
+                                        <li>Select a text to reveal the toolbar.</li>
+                                        <li>Edit rich document on-the-fly, so elastic!</li>
+                                    </ul>
+                                    <p><br></p>
+                                    <p>End of simple area</p>
+                                </div>
+                                <input type="hidden" id="content" name="content" value="<%= mypage.content || '' %>">
+                                <input type="hidden" id="oldcontent" name="oldcontent" value="<%= mypage.content || '' %>">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="d-grid">
+                <button type="submit" class="btn btn-info">Update Blog</button>
+            </div>
+        </form>
+    </div>
+    
+</div>

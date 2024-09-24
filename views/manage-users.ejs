@@ -1,0 +1,288 @@
+<div class="row">
+    <div class="col-12">
+        <div class="page-title-box">
+            <h4 class="page-title">Manage users</h4>
+        </div>
+    </div>
+</div>
+<!-- end page title --> 
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="row mb-2">
+                    <div class="col-sm-5">
+                        <button type="button" class="btn btn-danger mb-2" data-bs-toggle="modal" data-bs-target="#event-modal-addUser"><i class="mdi mdi-plus-circle me-2"></i> Add User</button>
+                    </div>
+                    <div class="col-sm-7">
+                        <form action="/app/export" method="get" id="exportForm">
+                        </form>
+                        <div class="text-sm-end">
+                            <button type="button" class="btn btn-danger mb-2 me-1" ><i class="mdi mdi-cog"></i></button>
+                            <button class="btn btn-success mb-2 me-1" data-bs-toggle="modal" data-bs-target="#event-modal2" >Import Data</button>
+                            <button  type="submit" class="btn btn-light mb-2" form="exportForm">Export</button>
+                            </div>
+                    </div><!-- end col-->
+                </div>
+
+                <div class="table-responsive">
+                    <table class="table table-centered table-striped dt-responsive nowrap w-100" id="products-datatable">
+                        <thead>
+                            <tr>
+                                <th style="width: 20px;">
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input" id="customCheck1">
+                                        <label class="form-check-label" for="customCheck1">&nbsp;</label>
+                                    </div>
+                                </th>
+                                <th>Customer</th>
+                                <th>Phone</th>
+                                <th>Email</th>
+                                <th>Location</th>
+                                <th>role</th>
+                                <th>Status</th>
+                                <th style="width: 75px;">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% users.forEach(user => { %>  
+                                <tr id="user<%= user._id %>">
+                                    <td>
+                                        <div class="form-check">
+                                            <input type="checkbox" class="form-check-input row-checkbox" id="customCheck<%= user._id %>">
+                                            <label class="form-check-label" for="customCheck<%= user._id %>">&nbsp;</label>
+                                        </div>
+                                    </td>
+                                    <td class="table-user">
+                                        <img src="<%= user.avatar %>" alt="table-user" class="me-2 rounded-circle">
+                                        <a href="javascript:void(0);" class="text-body fw-semibold" aria-valuetext=""><%= user.fullName %></a>
+                                    </td>
+                                    <td>
+                                        <%= user.mobile %>
+                                    </td>
+                                    <td>
+                                        <%= user.email %>
+                                    </td>
+                                    <td>
+                                        <%= user.location %>
+                                    </td>
+                                    <td>
+                                        <%= user.role %>
+                                    </td>
+                                    <td>
+                                        <span class= "badge <%= user.isActive ? 'badge-success-lighten' :  'badge-danger-lighten' %>" ><%= user.isActive ? 'Active' :  'Blocked' %></span>
+                                    </td>
+    
+                                    <td>
+                                        <button data-bs-toggle="modal" data-bs-target="#event-modal" onclick="handleActionEdit(event, '<%- encodeURIComponent(JSON.stringify(user)) %>')" class="manage-user "><a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-square-edit-outline edit" ></i></a></button>
+                                        <button  onclick="handleActionEdit(event, '<%- encodeURIComponent(JSON.stringify(user)) %>')" class="manage-user "><a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-delete delete"></i></a></button>
+                                    </td>
+                                </tr>
+                            <% }) %>
+
+
+                        </tbody>
+                    </table>
+                    
+                </div>
+            </div> <!-- end card-body-->
+        </div> <!-- end card-->
+    </div> <!-- end col -->
+</div>
+<!-- Add New Event Modal -->
+<div class="modal fade" id="event-modal-addUser" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form class="needs-validation" action="/app/Upser" method="post" name="event-form" id="form-event-add" novalidate>
+                <div class="modal-header py-3 px-4 border-bottom-0">
+                    <h5 class="modal-title" id="modal-title">Add user :</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body px-4 pb-4 pt-0">
+                    <div class="row">
+                        
+                    <div class="col-6">
+                            <div class="mb-2">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="email" placeholder="email" name="email" value="" />
+                            </div>
+                            <div class="mb-2">
+                                <label class="control-label form-label">fullName</label>
+                                <input class="form-control" placeholder="Insert  fullName" type="text" name="fullName"  />
+                            </div>
+                            <div class="mb-2">
+                                <label class="control-label form-label">bio </label>
+                                <input class="form-control" placeholder="Insert Description" type="text" name="bio"  />
+                            </div>
+                            <div class="mb-2">
+                                <label class="control-label form-label">status </label>
+                                <input type="checkbox " id="switch" data-switch="success" name="isActive"/>
+                                <label for="switch"  data-on-label="Yes" data-off-label="No" class="mb-0 d-block" style="margin-top:calc((38px - 24px )/2)"></label>
+
+
+                            </div>
+                            
+
+                    </div>
+                    <div class="col-6">
+                        <div class="mb-2">
+                            <label class="control-label form-label">Role</label>
+                            <select class="form-control" name="role" required>
+                                <% Object.keys(roles).forEach(function(key) { %>
+                                    <option value="<%= roles[key] %>" >
+                                        <%= roles[key].charAt(0).toUpperCase() + roles[key].slice(1) %>
+                                    </option>
+                                <% }); %>
+                            </select>
+                        </div>
+                        <div class="mb-2">
+                            <label for="lastname" class="form-label">Phone number</label>
+                            <input type="text" class="form-control"  name="mobile" placeholder="Phone number" value="">
+                        </div>
+                        <div class="mb-2">
+                            <label for="cwebsite" class="form-label">Location</label>
+                            <input type="text" class="form-control" id="cwebsite" placeholder="Enter Location" name="location" value="">
+                        </div>
+
+                    </div>
+
+                    </div>
+                 
+                    
+                
+                   
+
+                    </div>
+                    <div class="row">
+                        
+                        <div class="col-12 text-end">
+                            <button type="button" class="btn btn-light me-1" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-success" id="">Save</button>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </form>
+        </div> <!-- End Modal Content -->
+    </div> <!-- End Modal Dialog -->
+<div class="modal fade" id="event-modal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form class="needs-validation" action="/app/Upser" method="post" name="event-form" id="form-event" novalidate>
+                <div class="modal-header py-3 px-4 border-bottom-0">
+                    <h5 class="modal-title" id="modal-title">edit user :</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body px-4 pb-4 pt-0">
+                    <div class="row">
+                        <div class="col-6">
+                            
+                            <div class="mb-2">
+                                <label class="control-label form-label">id</label>
+                                <input class="form-control"  type="text" name="id" id="inputId" value="" required readonly/>
+                                </div>
+                            
+                    </div>
+                    <div class="col-6">
+                            <div class="mb-2">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="email" placeholder="email" name="email" value="" />
+                            </div>
+
+                    </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            
+                            <div class="mb-2">
+                                <label class="control-label form-label">fullName</label>
+                                <input class="form-control" placeholder="Insert  fullName" type="text" name="fullName" required />
+                            </div>
+                            <div class="mb-2">
+                                <label class="control-label form-label">bio </label>
+                                <input class="form-control" placeholder="Insert Description" type="text" name="bio" required />
+                            </div>
+                    </div>
+                    <div class="col-6">
+                            <div class="mb-2">
+                                <label for="lastname" class="form-label">Phone number</label>
+                                <input type="text" class="form-control"  name="mobile" placeholder="Phone number" value="">
+                            </div>
+                            <div class="mb-2">
+                                <label for="cwebsite" class="form-label">Location</label>
+                                <input type="text" class="form-control" id="cwebsite" placeholder="Enter Location" name="location" value="">
+                            </div>
+
+                    </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="mb-2">
+                                <label class="control-label form-label">Role</label>
+                                <select class="form-control" name="role" required>
+                                    <% Object.keys(roles).forEach(function(key) { %>
+                                        <option value="<%= roles[key] %>" >
+                                            <%= roles[key].charAt(0).toUpperCase() + roles[key].slice(1) %>
+                                        </option>
+                                    <% }); %>
+                                </select>
+                            </div>
+                            
+                    </div>
+                        <div class="col-6">
+                            <div class="mb-2">
+                                <label class="control-label form-label">status </label>
+                                <input type="checkbox" id="switch" data-switch="success" name="isActive"/>
+                                <label for="switch"  data-on-label="Yes" data-off-label="No" class="mb-0 d-block" style="margin-top:calc((38px - 24px )/2)"></label>
+                       </div>
+                    </div>
+                   
+
+                    </div>
+                    <div class="row">
+                        
+                        <div class="col-12 text-end">
+                            <button type="button" class="btn btn-light me-1" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-success" id="">Save</button>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </form>
+        </div> <!-- End Modal Content -->
+    </div> <!-- End Modal Dialog -->
+</div> <!-- End Modal -->
+<div class="modal fade" id="event-modal2" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form id="importForm" action="/import" method="post" enctype="multipart/form-data" novalidate>
+                <div class="modal-header py-3 px-4 border-bottom-0">
+                    <h5 class="modal-title" id="modal-title">Upload  :</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body px-4 pb-4 pt-0">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="mb-2">
+                                <label class="control-label form-label">Data</label>
+                                <input class="form-control" type="file" name="dataFile" accept=".json, .csv" required >
+                            </div>
+
+                    </div>
+                    
+                    </div>
+                    <div class="row">
+                        <div class="col-12 text-end">
+                            <button type="button" class="btn btn-light me-1" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-success" id="">Import Data</button>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </form>
+        </div> <!-- End Modal Content -->
+    </div> <!-- End Modal Dialog -->
+</div> <!-- End Modal -->
+

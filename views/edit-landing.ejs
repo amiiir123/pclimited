@@ -1,0 +1,287 @@
+<div class="row">
+  <div class="col-12">
+    <div class="page-title-box">
+      <h4 class="page-title">Edit landing page</h4>
+    </div>
+  </div>
+</div>
+<!-- end page title -->
+
+<div class="row">
+  <div class="col-6">
+    <div class="card">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="mb-3">
+
+              <label for="captionSelect">Select Caption:</label>
+              <select id="captionSelect" class="form-select"
+                onchange="showServiceDetails('caption','<%= JSON.stringify(captions) %>')">
+                <option value="" disabled>--Select a Caption--</option>
+                <% captions.forEach(service=> { %>
+                  <option value="<%= service._id %>">
+                    <%= service.title %>
+                  </option>
+                  <% }) %>
+              </select>
+            </div>
+          </div>
+          <div class="col-lg-12">
+            <div class="mb-3">
+
+              <form action="caption/update" method="POST">
+                <input type="hidden" id="captionId" name="id">
+                <div>
+                  <label class="form-label">title:</label>
+                  <input type="text" id="captionTitle" name="title" class="form-control">
+                </div>
+                <div>
+                  <label class="form-label">Description:</label>
+                  <textarea id="captionDescription" name="description" class="form-control"></textarea>
+                </div>
+                <div>
+                  <label class="form-label">Button (content):</label>
+                  <input type="text" id="captionButton" name="Bcaption" class="form-control">
+                </div>
+                <button type="submit" class="btn btn-success mt-3 ">Update</button>
+              </form>
+            </div>
+          </div>
+
+
+
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="mb-3">
+
+              <label for="serviceSelect">Select Service:</label>
+              <select id="serviceSelect" class="form-select" onchange=" showServiceDetails('service','<%= JSON.stringify(services) %>') ">
+
+                <option value="" disabled selected>--Select a Service--</option>
+                <% services.forEach(service=> { %>
+                  <option value="<%= service._id %>">
+                    <%= service.title %>
+                  </option>
+                  <% }) %>
+              </select>
+            </div>
+          </div>
+          <div class="col-lg-12">
+            <div class="mb-3">
+
+              <form action="admin/update" method="POST">
+                <input type="hidden" id="serviceId" name="id">
+                <div>
+                  <label class="form-label">Title:</label>
+                  <input type="text" id="serviceTitle" name="title" class="form-control">
+                </div>
+                <div>
+                  <label class="form-label">Description:</label>
+                  <textarea id="serviceDescription" name="description" class="form-control"></textarea>
+                </div>
+                
+                <div id="firstForm">
+                  <label class="form-label" >optional information:</label>
+                  <div class="input-group mb-3">
+                    <input type="text" id="keywordInput" class="form-control" placeholder="Enter a keyword or phrase and press Enter">
+                  </div>
+                  <div class="mb-3" id="wordList"></div>
+                  <input type="hidden" id="keywordsArray" name="features">
+                </div>
+
+                <button type="submit" class="btn btn-success mt-3 ">Update</button>
+              </form>
+            </div>
+          </div>
+
+
+
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="mb-3">
+
+              <label for="dataSelect">Select Service:</label>
+              <select id="dataSelect" class="form-select" onchange="showServiceDetails('data','<%= encodeURIComponent(JSON.stringify(sectionDatas)) %>')">
+                <option value="" disabled selected>--Select a Service--</option>
+                <% sectionDatas.forEach(Data=> { %>
+                  <% if (Data.sectionName == 'partner') { %>
+                   
+                  <% }else{ %>
+                    <option value="<%= Data._id %>">
+                      <%= Data.sectionName %>
+                    </option>
+                    <% } %>
+                  <% }) %>
+              </select>
+            </div>
+          </div>
+          <div class="col-lg-12">
+            <div class="mb-3">
+
+              <form action="section/update" method="POST">
+                <input type="hidden" id="dataId" name="id">
+                <div>
+                  <label class="form-label">small Title:</label>
+                  <input type="text" id="smallTitle" name="smtitle" class="form-control">
+                </div>
+                <div>
+                  <label class="form-label">Title:</label>
+                  <input type="text" id="dataTitle" name="title" class="form-control">
+                </div>
+                <div class="mb-3">
+                  <label class="form-label">Description:</label>
+                  <textarea id="dataDescription" name="description" class="form-control"></textarea>
+                </div>
+                <div class="mb-3" id="optionaLink">
+                  <label class="form-label">link:</label>
+                  <input type="text" id="link" name="link" class="form-control">
+                </div>
+                <div  id="optional" >
+                  <label class="form-label" >optional information:</label>
+                  <div class="input-group mb-3">
+                    <input type="text" id="keywordInput2" class="form-control" placeholder="Enter a keyword or phrase and press Enter">
+                  </div>
+              
+                  <div class="mb-3" id="wordList2"></div>
+              
+                  <input type="hidden" id="keywordsArray2" name="keywordsArray">
+
+                </div>
+            
+
+                <button type="submit" class="btn btn-success mt-3 ">Update</button>
+              </form>
+            </div>
+          </div>
+
+
+
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+  <div class="col-6">
+    <div class="card">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="mb-3">
+
+              <label for="boxSelect">Why choose Us:</label>
+              <select id="boxSelect" class="form-select"
+                onchange="showServiceDetails('box','<%= JSON.stringify(boxData) %>')">
+                <option value="" disabled>--Select a box--</option>
+                <% boxData.forEach(Data=> { %>
+                  <option value="<%= Data._id %>">
+                    <%= Data.title %>
+                  </option>
+                  <% }) %>
+              </select>
+            </div>
+          </div>
+          <div class="col-lg-12">
+            <div class="mb-3">
+              <form action="box/update" method="POST">
+                <input type="hidden" id="boxId" name="id">
+                <div class="d-none">
+                  <label class="form-label">Icon</label>
+                  <select id="iconSelect" class="form-select selectpicker" data-live-search="true"
+                    onchange="updateIcon()">
+                    <option value="" class="defaultIcon" disabled selected>
+                      <i id="defaultIcon" class=""></i> Default
+                    </option>
+                    <% ["mdi-account-lock-open", "mdi-account-lock-open-outline" , "mdi-camera-marker"
+                      ,"noti-icon"].forEach(xIcon=> { %>
+                      <option data-content="<i class='<%= xIcon %>' aria-hidden='true'></i> <%= xIcon %>"></option>
+                      <% }) %>
+                  </select>
+                </div>
+
+                <div>
+                  <label class="form-label">Title:</label>
+                  <input type="text" id="boxTitle" name="title" class="form-control">
+                </div>
+                <div>
+                  <label class="form-label">Description:</label>
+                  <textarea id="boxDescription" name="description" class="form-control"></textarea>
+                </div>
+                
+
+                <button type="submit" class="btn btn-success mt-3 ">Update</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="mb-3">
+  
+              <label for="quSelect">Quotes :</label>
+              <select id="quSelect" class="form-select"
+                onchange="showServiceDetails('qu','<%= JSON.stringify(quData) %>')">
+                <option value="" disabled selected>--Select a Quote --</option>
+                <% quData.forEach(Data=> { %>
+                  <option value="<%= Data._id %>">
+                    <%= Data.title %>
+                  </option>
+                  <% }) %>
+              </select>
+            </div>
+          </div>
+          <div class="col-lg-12">
+            <div class="mb-3">
+  
+              <form action="qu/update" method="POST">
+                <input type="hidden" id="quId" name="id">
+  
+                <div>
+                  <label class="form-label">Author:</label>
+                  <input type="text" id="quTitle" name="title" class="form-control">
+                </div>
+                <div>
+                  <label class="form-label">Title :</label>
+                  <input type="text" id="author" name="author" class="form-control">
+                </div>
+                <div>
+                  <label class="form-label">Description:</label>
+                  <textarea id="quDescription" name="description" class="form-control"></textarea>
+                </div>
+  
+                <button type="submit" class="btn btn-success mt-3 ">Update</button>
+              </form>
+            </div>
+          </div>
+  
+  
+  
+        </div>
+      </div>
+    </div>
+   
+      
+    
+  </div>
+  
+
+</div>
+
+
+
+

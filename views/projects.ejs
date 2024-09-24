@@ -1,0 +1,107 @@
+<div class="row">
+    <div class="col-12">
+        <div class="page-title-box">
+          
+            <h4 class="page-title">projects page</h4>
+        </div>
+    </div>
+</div>
+<!-- end page title -->
+
+<div class="row">
+
+    <div class="col-6">
+        <div class="card">
+            <button class="btn btn-lg  font-16 btn-danger " id="btn-new-event" data-bs-toggle="modal"
+                data-bs-target="#event-modal">
+                <i class="mdi mdi-plus-circle-outline"></i> Create New project
+            </button>
+            <div class="card-body">
+                <form action="projectss" method="POST" enctype="multipart/form-data" id="projectForm">
+                            
+                                <select class="form-select" name="section" id="section"
+                                    onchange="previewdata(event,'imgPreview1')">
+                                    <option value="" disabled selected>--Select a project--</option>
+                                    <% Projects.forEach(project=> { %>
+                                        <option value="<%= project._id%> ">
+                                            <%= project.title%>
+                                        </option>
+                                        <% }) %>
+                                </select>
+                                <input type="hidden" name="myimg" value="" id="myimg">
+                                <input type="hidden" id="dataId" name="id">
+                                <div class="mb-3 mt-3">
+                                    <label class="form-label">Title:</label>
+                                    <input type="text" id="projectTitle" name="title" class="form-control"
+                                        maxlength="20" data-toggle="maxlength" placeholder="ex: project 1" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">short Description:</label>
+                                    <textarea id="projectDesc" name="description" class="form-control" maxlength="40"
+                                        data-toggle="maxlength" placeholder="ex: mobile application" value=""
+                                        required></textarea>
+                                </div>
+                                
+                                        <!--
+                            <div class="input-group mb-3">
+                              <input type="text" id="typeofproject" class="form-control" maxlength="15" data-toggle="maxlength" placeholder="Enter a types related to project" required>
+                            </div>
+                            <div class="mb-3" id="wordList"></div>
+                            <input type="hidden" id="keywordsArray" name="type">
+                          -->
+                                
+<!--<div class="mb-3">
+                                    <label class="form-label">type of project:</label>
+                                    <input type="text" id="typeofproject" name="type" class="form-control"
+                                        maxlength="15" data-toggle="maxlength" placeholder="ex: business" required>
+                                </div>
+                                -->
+                                <div class="mb-3">
+                                    <div class="form-floating">
+                                        <select class="form-select" id="typeofproject" form="projectForm" aria-label="Floating label select example" name="type" required>
+                                            <option  disabled selected>select type</option>
+                                            <% categories.forEach(cat => { %>
+                                                <option value="<%= cat.name %>"><%= cat.name %></option>
+                                            <% }) %>
+                                        </select>
+                                        <label for="typeofproject">select type</label>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+
+                                    <input class="form-control" type="file" name="file" id="myfile" required>
+                                </div>
+
+                                <div class="form-group ">
+                                    <button type="submit" class="btn btn-success mt-3 ">Update</button>
+                                    <button class="btn  font-16 btn-danger mt-3" id="deleteButton"> Delete </button>
+            
+                                </div>
+                </form>
+
+            </div>
+        </div>
+
+
+    </div>
+
+    <div class="col-6">
+        <div class="card">
+            <button class="btn btn-lg  font-16 btn-success ">
+                <i class="mdi mdi-plus-circle-outline"></i> Preview image
+            </button>
+            <div class="card-body">
+                <div class="text-center " style="display: flex;align-items: center;flex-direction: column;">
+    
+                    <img id="imgPreview1" src="" alt="Image Preview"
+                        style="display:none; width: 350px;border-radius: 8px ;" />
+                </div>
+    
+    
+    
+            </div>
+        </div>
+    
+    
+    </div>
+</div>

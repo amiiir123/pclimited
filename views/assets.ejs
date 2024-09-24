@@ -1,0 +1,92 @@
+<div class="row">
+  <div class="col-12">
+    <div class="page-title-box">
+      <h4 class="page-title">Edit Images & Assets</h4>
+    </div>
+  </div>
+</div>
+<!-- end page title -->
+
+<div class="row">
+
+  <div class="col-6">
+    <div class="card">
+      <div class="card-body">
+        <form action="imgslan" method="POST" enctype="multipart/form-data">
+          <div class="row">
+            <div class="col-12">
+              <div class="mb-3">
+                <img id="imgPreview"  src="" alt="Image Preview" style="display:none; max-width: 150px;max-height: 50px;background-color: #dcdcdcb6;" />
+  
+                <select  class="form-select" name="section" id="section" onchange="previewImg(event,'imgPreview')">
+                  <option value="" disabled selected>--Select a img--</option>
+                  <option value="login">login page</option>
+                </select>
+              </div>
+              <input class="form-control" type="file" name="file" >
+            </div>
+            <button type="submit" class="btn btn-success mt-3 ">Update</button>
+        </form>
+  
+      </div>
+    </div>
+  
+  
+  </div>
+  
+  
+</div>
+<div class="col-6">
+  <div class="card">
+    <div class="card-body">
+      <form action="imgslan" method="POST" enctype="multipart/form-data">
+        <div class="row">
+          <div class="col-12">
+            <div class="mb-3">
+              <img id="imgPreview1" src="" alt="Image Preview" style="display:none; width: 150px;" />
+
+              <select  class="form-select" name="section" id="section" onchange="previewImg(event,'imgPreview1')">
+                <option value="" disabled>--Select a img--</option>
+                <option value="caption1">caption 1</option>
+                <option value="caption2">caption 2</option>
+                <option value="caption3">caption 3</option>
+                <option value="wedo">We do things differently</option>
+                <option value="backgroundimg1">Start creating your website section</option>
+                <option value="videoThumb">our Video thumb</option>
+                <option value="quoatbackground">quoatbackground</option>
+                <option value="aboutSection1">about img 1 Section</option>
+                <option value="aboutSection2">about img 2 Section</option>
+                <option value="aboutSection3">about img 3 Section</option>
+                <option value="page-title">page title</option>
+                <option value="partner1">partner 1</option>
+                <option value="partner2">partner 2</option>
+                <option value="partner3">partner 3</option>
+                <option value="partner4">partner 4</option>
+                <option value="partner5">partner 5</option>
+              </select>
+            </div>
+            <input class="form-control" type="file" name="file" >
+          </div>
+          <button type="submit" class="btn btn-success mt-3 ">Update</button>
+      </form>
+
+    </div>
+  </div>
+
+
+</div>
+
+
+
+<div id="info-alert-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-body p-4">
+        <div class="text-center d">
+          <img id="modal-image" src="" alt="Image" style="width: 100%; height: auto;">
+          <button type="button" class="btn btn-info my-2" data-bs-dismiss="modal">Continue</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,110 @@
+
+
+<div class="container mt-5">
+    <div class="row">
+     
+
+      <div class="col-lg-4">
+        <h3 class="title">Add menu items</h3>
+        <div class="accordion" id="add_menu_item_accordion">
+          <!-- Pages Section -->
+          
+          
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingPages">
+              <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
+                Pages
+              </button>
+            </h2>
+            <div id="collapsePages" class="accordion-collapse collapse show" aria-labelledby="headingPages" data-bs-parent="#add_menu_item_accordion">
+              <div class="accordion-body">
+                
+                <ul class="list-unstyled">
+                  <% menusPages.forEach((element) => { %>
+                    <form action="add/menu" method="post" id="menuFormcheck" class="menu-form2">
+                                    <li><label><input type="checkbox" name="title" value="<%= element.title %>"><%= element.title %></label><input type="hidden" name="link" value="<%= element.link %>"></li>
+                                  </form>
+                                <% }) %>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+              
+            <!-- Static Pages Section -->
+         
+          <!-- Custom Links Section -->
+          <form action="add/menu/" method="post">
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="headingCustomLinks">
+                  <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCustomLinks" aria-expanded="true" aria-controls="collapseCustomLinks">
+                    Custom Links
+                  </button>
+                </h2>
+                <div id="collapseCustomLinks" class="accordion-collapse collapse show" aria-labelledby="headingCustomLinks" data-bs-parent="#add_menu_item_accordion">
+                  <div class="accordion-body">
+                      <div class="form-group">
+                        <label for="custom_label_text" class="form-label"><strong>Title</strong></label>
+                        <input type="text" id="custom_label_text" class="form-control" name="title" placeholder="ex: home">
+                      </div>
+                    <div class="form-group">
+                      <label for="custom_url" class="form-label"><strong>URL</strong></label>
+                      <input type="text" id="custom_url" class="form-control" name="link" placeholder="ex: https://">
+                    </div>
+                    <button type="submit" id="add_custom_links" class="btn btn-primary btn-xs mt-3">Add To Menu</button>
+                  </div>
+                </div>
+              </div>
+          </form>
+
+        </div>
+      </div>
+
+      <div class="col-lg-8">
+        <h3 class="title">Menu Structure</h3>
+        <div class="card">
+          <div class="card-body">
+              
+              <% menus.forEach(element => { %>
+                
+                <form action="menu-update/<%= element._id %>" method="post" id="menuForm<%= element._id %>">
+                    <div class="accordion-items">
+                        <h2 class="accordion-header" id="headingCustomLinks">
+                            
+                          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target='#collapseCustomLinks<%= element._id %>' aria-expanded="true" aria-controls='collapseCustomLinks<%= element._id %>' >
+                            <%= element.title %>
+                          </button>
+                        </h2>
+                        <div id='collapseCustomLinks<%= element._id %>' class="accordion-collapse collapse" aria-labelledby="headingCustomLinks" data-bs-parent="#add_menu_item_accordion">
+                          <div class="accordion-body">
+
+                              <div class="form-group mb-2">
+                                <label for="custom_label_text" class="form-label"><strong>Title</strong></label>
+                                <input type="text" id="custom_label_text" class="form-control" name="title" placeholder='<%= element.title %>' value="<%= element.title %>">
+                              </div>
+                              <div class="form-group mb-2">
+                                <label for="custom_url" class="form-label"><strong>URL</strong></label>
+                                <input type="text" id="custom_url" class="form-control" name="link" placeholder='<%= element.link %>'  value="<%= element.link %>">
+                              </div>
+                              <div class="form-group ">
+                                  <button type="submit"  id="menu_structure_submit_btn" class="btn btn-primary">Update Changes</button>
+                                  <button type="button" class="btn btn-danger" onclick="handleDeleteMenu('<%= element._id %>')" title="Delete">
+                                      Delete
+                                  </button>
+                              </div>
+                          </div>
+                        </div>
+                      </div>
+                    </form>
+                 
+                   
+    
+                <% }) %>
+
+
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+

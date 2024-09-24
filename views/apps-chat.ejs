@@ -1,0 +1,97 @@
+<div class="row">
+    <div class="col-12">
+        <div class="page-title-box">
+            <h4 class="page-title">Chat</h4>
+        </div>
+    </div>
+</div>
+<!-- end page title -->
+
+<div class="row">
+    <!-- start chat users-->
+    <div class="col-xxl-5 col-xl-5 order-xl-1">
+        <div class="card">
+            <div class="card-body p-0">
+                <ul class="nav nav-tabs nav-bordered" id="userSent">
+                    <li class="nav-item">
+                        <a href="#allUsers" data-bs-toggle="tab" aria-expanded="false" class="nav-link active py-2 " data-display="received">
+                            All messages
+                        </a>
+                    </li>
+                   
+                  
+                </ul> <!-- end nav-->
+                <div class="tab-content">
+                    <div class="tab-pane show active card-body pb-0" id="newpost">
+
+                        <!-- start search box -->
+                        <div class="app-search">
+                            <div class="mb-2 position-relative">
+                                <input type="text" class="form-control live-search-box " placeholder="People , messages..."  />
+                                <span class="mdi mdi-magnify search-icon"></span>
+                            </div>
+                        </div>
+                        <select class="form-control select2 btn-success"  id="userSelect">
+                            <option selected disabled>New Message</option>
+
+                           
+                        </select>
+                        <!-- end search box -->
+                    </div>
+
+                        <!-- users -->
+                    <div class="row">
+                        <div class="col">
+                            <div class="card-body py-0"  data-simplebar id="heloo" style="max-height: 552px ; " >
+
+                            </div> <!-- end slimscroll-->
+                        </div> <!-- End col -->
+                    </div> <!-- end users -->
+                </div> <!-- end tab content-->
+            </div> <!-- end card-body-->
+        </div> <!-- end card-->
+    </div>
+    <!-- end chat users-->
+
+    <!-- chat area -->
+    <div class="col-xxl-7 col-xl-7 order-xl-2">
+        <div class="card">
+            <div class="card-body px-0 pb-0" id="mychat">
+                <ul class="conversation-list px-3" data-simplebar style="max-height: 538px" id="chat-messages">
+                    
+                   
+                </ul>
+
+                <div class="row px-3 pb-3">
+                    <div class="col">
+                        <div class="mt-2 bg-light p-3 rounded">
+                            <form  novalidate="" id="chat-form" name="chat-form" >
+                                <div class="row">
+                                    <div class="col mb-2 mb-sm-0">
+                                        <input type="text" class="form-control border-0" placeholder="Enter your text" id="chat-input" >
+                                        <input type="hidden" class="form-control border-0"   id="chat-receiver"  value="" >
+                                        <div class="invalid-feedback">
+                                            Please enter your messsage
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-auto">
+                                        <div class="btn-group">
+                                            <a href="#" class="btn btn-light"><i class="uil uil-paperclip"></i></a>
+                                            <a href="#" class="btn btn-light"> <i class='uil uil-smile'></i> </a>
+                                            <div class="d-grid">
+                                                <button type="submit" class="btn btn-success "><i class='uil uil-message'></i></button>
+                                            </div>
+                                        </div>
+                                    </div> <!-- end col -->
+                                </div> <!-- end row-->
+                            </form>
+                        </div> 
+                    </div> <!-- end col-->
+                </div>
+                <!-- end row -->
+            </div> <!-- end card-body -->
+        </div> <!-- end card -->
+    </div>
+    <!-- end chat area-->
+
+</div> <!-- end row-->

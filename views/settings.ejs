@@ -1,0 +1,233 @@
+<div class="row">
+    <div class="col-12">
+        <div class="page-title-box">
+           
+            <h4 class="page-title">Settings</h4>
+        </div>
+    </div>
+</div>
+<!-- end page title --> 
+
+<div class="row">
+    <div class="col-xl-8 col-lg-7">
+        <div class="card">
+            <div class="card-body">
+                <ul class="nav nav-pills bg-nav-pills nav-justified mb-3">
+                    
+                    <li class="nav-item">
+                        <a href="#settings" data-bs-toggle="tab" aria-expanded="false" class="nav-link rounded-0 active">
+                            Settings
+                        </a>
+                    </li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane active" id="settings">
+                        <form action="/app/save-company" method="post" >
+                            <h5 class="mb-4 text-uppercase"><i class="mdi mdi-account-circle me-1"></i> Information of the company</h5>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="name" class="form-label">Ceo Name</label>
+                                        <input type="text" class="form-control" id="name" placeholder="Name" name="name" value="<%= settings.name %>" >
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="lastname" class="form-label">Phone number</label>
+                                        <input type="text" class="form-control" id="lastname" placeholder="Phone number" name="phoneNumber" value="<%= settings.phoneNumber %>">
+                                    </div>
+                                </div> <!-- end col -->
+                            </div> <!-- end row -->
+
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="mb-3">
+                                        <label for="userbio" class="form-label">Description</label>
+                                        <textarea class="form-control" id="userbio" rows="4" placeholder="Write something..." name="description"><%= settings.description %></textarea>
+                                    </div>
+                                </div> <!-- end col -->
+                            </div> <!-- end row -->
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="analytec" class="form-label">google analytics id</label>
+                                        <input type="text" class="form-control" id="analytec" placeholder="google analytics id" name="googleAnalyticsId" value="<%= settings.googleAnalyticsId %>">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="analytec" class="form-label">System email </label>
+                                        <input type="email" class="form-control" id="analytec" placeholder="Sytem email " name="systemEmail" value="<%= settings.systemEmail %>">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="apifb" class="form-label">meta-api-track </label>
+                                        <input type="text" class="form-control" id="apifb" placeholder="meta api" name="metaApiTrack" value="<%= settings.metaApiTrack %>">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="apifb" class="form-label">Author </label>
+                                        <input type="text" class="form-control" id="apifb" placeholder="Author name " name="author" value="<%= settings.author %>">
+                                    </div>
+                                </div> <!-- end col -->
+                            </div> <!-- end row -->
+
+                            <h5 class="mb-3 text-uppercase bg-light p-2"><i class="mdi mdi-office-building me-1"></i> Other Information</h5>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="companyname" class="form-label">Company Name</label>
+                                        <input type="text" class="form-control" id="companyname" placeholder="Enter company name" name="companyName" value="<%= settings.companyName %>">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="location" class="form-label">Company Location</label>
+                                        <input type="text" class="form-control" id="location" placeholder="Enter adress .. " name="companyLocation" value="<%= settings.companyLocation %>">
+                                    </div>
+                            </div> <!-- end col -->
+                            </div> <!-- end row -->
+                            <h5 class="mb-3 text-uppercase bg-light p-2"><i class="mdi mdi-earth me-1"></i> Social</h5>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="social-fb" class="form-label">Facebook</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text"><i class="mdi mdi-facebook"></i></span>
+                                            <input type="text" class="form-control" id="social-fb" placeholder="Url" name="socialFacebook" value="<%= settings.social.facebook %>">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="social-tw" class="form-label">X</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text"><i class="mdi mdi-twitter"></i></span>
+                                            <input type="text" class="form-control" id="social-tw" placeholder="Username" name="socialx" value="<%= settings.social.x %>">
+                                        </div>
+                                    </div>
+                                </div> <!-- end col -->
+                            </div> <!-- end row -->
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="social-insta" class="form-label">Instagram</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text"><i class="mdi mdi-instagram"></i></span>
+                                            <input type="text" class="form-control" id="social-insta" placeholder="Url" name="socialInstagram" value="<%= settings.social.instagram %>">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="social-lin" class="form-label">Linkedin</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text"><i class="mdi mdi-linkedin"></i></span>
+                                            <input type="text" class="form-control" id="social-lin" placeholder="Url" name="socialLinkedin" value="<%= settings.social.linkedin %>">
+                                        </div>
+                                    </div>
+                                </div> <!-- end col -->
+                            </div> <!-- end row -->
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="social-sky" class="form-label">Skype</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text"><i class="mdi mdi-skype"></i></span>
+                                            <input type="text" class="form-control" id="social-sky" placeholder="@username" name="socialSkype" value="<%= settings.social.skype %>">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="social-gh" class="form-label">Github</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text"><i class="mdi mdi-github"></i></span>
+                                            <input type="text" class="form-control" id="social-gh" placeholder="Username" name="socialGithub" value="<%= settings.social.github %>">
+                                        </div>
+                                    </div>
+                                </div> <!-- end col -->
+                            </div> <!-- end row -->
+                            
+                            <div class="text-end">
+                                <button type="submit" class="btn btn-success mt-2"><i class="mdi mdi-content-save"></i> Save</button>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- end settings content-->
+
+                </div> <!-- end tab-content -->
+            </div> <!-- end card body -->
+        </div> <!-- end card -->
+    </div> <!-- end col -->
+    <div class="col-xl-4 col-lg-5">
+        <div class="card">
+            <div class="card-body">
+                <ul class="nav nav-pills bg-nav-pills nav-justified mb-3">
+                    
+                    <li class="nav-item">
+                        <a href="#settings" data-bs-toggle="tab" aria-expanded="false" class="nav-link rounded-0 active">
+                            Logos
+                        </a>
+                    </li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane active" id="settings">
+                        <form action="imgslan" method="POST" enctype="multipart/form-data">
+                            <div class="row">
+                              <div class="col-12">
+                                <div class="mb-3">
+                                  <img id="imgPreview"  src="" alt="Image Preview" style="display:none; max-width: 150px;max-height: 50px;background-color: #dcdcdcb6;" />
+                    
+                                  <select  class="form-select" name="section" id="section" onchange="previewImg(event,'imgPreview')">
+                                    <option value="" disabled>--Select a img--</option>
+                                    <option value="logo">logo</option>
+                                    <option value="logo-light">logo-light</option>
+                                    <option value="favicon">favicon</option>
+                                  </select>
+                                </div>
+                                <input class="form-control" type="file" name="file" >
+                              </div>
+                              <button type="submit" class="btn btn-success mt-3 ">Update</button>
+                          </form>
+                    </div>
+                    <!-- end settings content-->
+
+                </div> <!-- end tab-content -->
+            </div> <!-- end card body -->
+        </div> <!-- end card -->
+
+        
+    </div> <!-- end col -->
+    <div class="card">
+        <div class="card-body">
+            <ul class="nav nav-pills bg-nav-pills nav-justified mb-3">
+                
+                <li class="nav-item">
+                    <a href="#settings" data-bs-toggle="tab" aria-expanded="false" class="nav-link rounded-0 active">
+                        Manage section
+                    </a>
+                </li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane active" id="settings">
+                    <form >
+                        <div id="allSection">
+
+                        </div>
+                       
+                        
+                        
+                        </div>
+                    </form>
+                </div>
+                <!-- end settings content-->
+
+            </div> <!-- end tab-content -->
+    </div> <!-- end card body -->
+</div>
+
+
+
+

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+        <head>
+            <script src="/frontend/js/addons/section.js" ></script>
+            <title>Home</title>
+            <meta charset="UTF-8">
+            <link rel="icon" href=""/>
+            <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+            <link rel="stylesheet" type="text/css" href="/frontend/css/bootstrap.min.css"/>
+            <link rel="stylesheet" type="text/css" href="/frontend/css/font-awesome.css"/> 
+            <link rel="stylesheet" type="text/css" href="/frontend/css/icomoon.css"/> 
+            <link rel="stylesheet" href="/frontend/css/animate.css"/> 
+            <link rel="stylesheet" href="/frontend/css/owl.carousel.css"/>
+            <link rel="stylesheet" href="/frontend/css/rev-settings.css"/>
+            <link rel="stylesheet" type="text/css" href="/frontend/css/default.css"/>
+            <link rel="stylesheet" type="text/css" href="/frontend/css/styles.css"/>
+            <link href="https://fonts.googleapis.com/css?family=Work+Sans:100,200,300,400,500,600,700,800,900" rel="stylesheet"/>
+
+         
+
+        </head>
+<body>
+    <div id="preloader">
+        <div class="spinner"> 
+            <div class="bounce1"></div>
+            <div class="bounce2"></div>
+            <div class="bounce3"></div>
+        </div>
+    </div>
+
+<!--===============================end header====================================-->
+<%- include('../partials/header.ejs') %>
+<!--=============================================================================-->
+
+<!--===============================start section====================================-->
+<%- body %>
+<!--================================================================================-->
+<a href=# class=scroll-to-top>
+    <i class="fa fa-angle-up"aria-hidden=true></i>
+</a>
+<!--===============================start footer ===================================-->
+<%- include('../partials/footer.ejs') %>
+<!--===============================================================================-->
+<% if (typeof isIndex !== 'undefined' && isIndex) { %>
+    <script src="/frontend/js/addons/index.js" defer></script>
+    <% } %>
+    <!--
+        <% if (typeof isAbout !== 'undefined' && isAbout) { %>
+            <script src="/frontend/js/addons/section.js" defer></script>
+            <script src="/frontend/js/addons/about.js" defer></script>
+            <% } %>
+    -->
+    <% if (typeof isPost !== 'undefined' && isPost) { %>
+        <script src="/frontend/js/addons/post.js" defer></script>
+        <% } %>
+        <% if (typeof isBlogs !== 'undefined' && isBlogs) { %>
+            <script src="/frontend/js/addons/blogs.js"></script>
+            <% } %>
+            <% if (typeof isProjetcs !== 'undefined' && isProjetcs) { %>
+                <% } %>
+                <% if (typeof isContact !== 'undefined' && isContact) { %>
+                    <script src="/frontend/js/addons/contact.js" defer></script>
+                    
+                    <% } %>
+                    <!--
+<script src="/frontend/js/addons/projects.js" ></script>
+
+                    -->
+
+
+<script src="/frontend/js/addons/all.js"></script>
+
+
+<script src="/frontend/js/jquery.min.js"></script>
+<script src="/frontend/js/bootstrap.min.js"></script>
+<script src="/frontend/js/owl.carousel.js"></script>
+<script src="/frontend/js/wow.min.js"></script>
+<script src="/frontend/js/jquery.counterup.min.js"></script>
+<script src="/frontend/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script>
+<script src="/frontend/js/isotope.pkgd.min.js"></script>
+<script src="/frontend/js/modernizr.js"></script>
+<script src="/frontend/js/revolution/jquery.themepunch.tools.min.js"></script>
+<script src="/frontend/js/revolution/jquery.themepunch.revolution.min.js"></script>
+<script src='/frontend/js/revolution/revolution.addon.slicey.min8a54.js?ver=1.0.0'></script>
+<script src="/frontend/js/revolution/revolution.extension.actions.min.js"></script>
+<script src="/frontend/js/revolution/revolution.extension.kenburn.min.js"></script>
+<script src="/frontend/js/revolution/revolution.extension.layeranimation.min.js"></script>
+<script src="/frontend/js/revolution/revolution.extension.migration.min.js"></script>
+<script src="/frontend/js/revolution/revolution.extension.slideanims.min.js"></script>
+<script src="/frontend/js/main.js"></script>
+
+
+
+
+</body>
+
+</html>

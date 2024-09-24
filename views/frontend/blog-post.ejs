@@ -1,0 +1,67 @@
+<div class=page-title style=background-position:center id=page-title>
+    <div class=container>
+        <h1>Services</h1>
+        <ul>
+            <li>
+                <a href=/index>Home</a>
+            <li>
+                <a href=/services>Services</a>
+        </ul>
+    </div>
+</div>
+
+<div class=section-block>
+    <div class=container>
+        <div class=row>
+            <div class="col-xs-12 col-md-8 col-sm-8">
+                <div class=blog-list>
+                    <div class=blog-post-img>
+                        <img alt=img src='' class=full-width id="postthub">
+                    </div>
+                    <div class=blog-post-text>
+                        <h4 id="thub">
+                            <a href=#><%= post.title %></a>
+                        </h4>
+                        <span id="date">
+                            </span>
+                        <span id="category">
+                            <i class="fa fa-bars"></i>
+                            <%= post.category %></span>
+                        <span>
+                            <i class="fa fa-user-o"></i>
+                            Admin</span>
+                        <div id="postContent">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-md-4 col-sm-4">
+                <div class=blog-list-right>
+                    <div class=blog-list-right-titles>
+                        <h4>Search</h4>
+                    </div>
+                    <div>
+                        <form id=search-input>
+                            <input name=s placeholder=Search>
+                        </form>
+                    </div>
+                    <div class=blog-list-right-titles>
+                        <h4>Recent Posts</h4>
+                    </div>
+                    <div class=blog-list-recent id="recentPost">
+                    </div>
+                    <div class=blog-list-right-titles>
+                        <h4>Category</h4>
+                    </div>
+                    <div class=blog-list-category>
+                        <ul id="blog-list-category">
+
+                        </ul>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

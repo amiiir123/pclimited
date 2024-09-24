@@ -1,0 +1,93 @@
+<div class="row">
+    <div class="col-12">
+        <div class="page-title-box">
+           
+            <h4 class="page-title">All Blogs</h4>
+        </div>
+    </div>
+</div>
+<!-- end page title -->
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body " style="position: relative;margin-bottom: 20px;">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="d-grid">
+                            <a href="add-blog" class="btn btn-lg font-16 btn-danger" class="mdi mdi-plus-circle-outline" style="text-decoration: none;color: white;">
+                            <i class="mdi mdi-plus-circle-outline"></i> Create New Blog</a>
+                        </div>
+                    </div>
+                    <!-- end col-->
+                    <table class="table table-centered table-borderless mb-0">
+                        <thead>
+                            <tr>
+                                <th>Blog Title</th>
+                                <th>Blog Category</th>
+                                <th>Create Date</th>
+                                <th>Active?</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% blogs.forEach(blog => { %>
+                                <tr id="categoryRow<%= blog._id %>">
+                                    <td><%= blog.title %></td>
+                                    <td><%= blog.category %></td>
+                                    <td><%= blog.createDate.toDateString() %></td>
+                                    <td>
+                                        <!-- Switch-->
+                                        <div>
+                                            <input type="checkbox" id="switch<%= blog._id %>" <%= blog.isActive ? 'checked' : '' %> data-switch="success" onchange="handleSwitchChangeBlog(event, '<%= blog._id %>')"/>
+                                            <label for="switch<%= blog._id %>" data-on-label="Yes" data-off-label="No" class="mb-0 d-block"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-floating">
+                                            <select class="form-select pt-0 pb-0" id="floatingSelect<%= blog._id %>" aria-label="Floating label select example" onchange="handleBlog(event, '<%= JSON.stringify(blog._id) %>')">
+                                                <option selected>Action</option>
+                                                <option value="edit">Edit</option>
+                                                <option value="delete">Delete</option>
+                                            </select>
+                                            <label for="floatingSelect<%= blog._id %>"></label>
+                                        </div>
+                                    </td>
+                                </tr>
+                            <% }) %>
+                        </tbody>
+                    </table>
+                    <div class="">
+
+                        <nav style="position: absolute;
+                        left: 50%;
+                        transform: translateX(-50%);">
+                            <ul class="pagination pagination-rounded mb-0">
+                                <% if (currentPage > 1) { %>
+                                    <li class="page-item">
+                                        <a class="page-link" href="/app/all-blog?page=<%= currentPage - 1 %>" aria-label="Previous">
+                                            <span aria-hidden="true">&laquo;</span>
+                                        </a>
+                                    </li>
+                                <% } %>
+                                <% for (let i = 1; i <= totalPages; i++) { %>
+                                    <li class="page-item <%= i === currentPage ? 'active' : '' %>">
+                                        <a class="page-link" href="/app/all-blog?page=<%= i %>"><%= i %></a>
+                                    </li>
+                                <% } %>
+                                <% if (currentPage < totalPages) { %>
+                                    <li class="page-item">
+                                        <a class="page-link" href="/app/all-blog?page=<%= currentPage + 1 %>" aria-label="Next">
+                                            <span aria-hidden="true">&raquo;</span>
+                                        </a>
+                                    </li>
+                                <% } %>
+                            </ul>
+                        </nav>
+                    </div>
+                </div> <!-- end row -->
+            </div> <!-- end card body-->
+        </div> <!-- end card -->
+    </div>
+    <!-- end col-12 -->
+</div> <!-- end row -->

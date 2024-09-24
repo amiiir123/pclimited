@@ -1,0 +1,132 @@
+<!-- Page Title -->
+<div class="row">
+    <div class="col-12">
+        <div class="page-title-box">
+            <h4 class="page-title">Add new Page</h4>
+        </div>
+    </div>
+</div>
+<!-- End Page Title -->
+
+<!-- Categories Table -->
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body" style="position: relative;margin-bottom: 20px;">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="d-grid">
+                            <button class="btn btn-lg font-16 btn-danger" id="btn-new-event" data-bs-toggle="modal" data-bs-target="#event-modal">
+                                <i class="mdi mdi-plus-circle-outline"></i> Create New page
+                            </button>
+                        </div>
+                    </div> <!-- End Col -->
+                    
+                    <div class="col-12">
+                        <table class="table table-centered table-borderless mb-0">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Link</th>
+                                    <th>Active?</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% pages.forEach(cat => { %>
+                                    <tr id="categoryRow<%= cat._id %>">
+                                        <td><%= cat.title %></td>
+                                        <td><%= cat.link %></td>
+                                        <td>
+                                            <!-- Switch-->
+                                            <div>
+                                                <input type="checkbox" id="switch<%= cat._id %>" <%= cat.isActive ? 'checked' : '' %> data-switch="success" onchange="handleSwitchChangePage(event, '<%= cat._id %>')"/>
+                                                <label for="switch<%= cat._id %>" data-on-label="Yes" data-off-label="No" class="mb-0 d-block"></label>
+                    
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-floating">
+                                                <select class="form-select" id="floatingSelect<%= cat._id %>" aria-label="Floating label select example" onchange="handleActionPage(event,'<%= encodeURIComponent(JSON.stringify(cat)) %>')">
+                                                    <option selected disabled>Action</option>
+                                                    <button class="btn btn-lg font-16 btn-danger" id="btn-new-event" data-bs-toggle="modal" data-bs-target="#event-modal">
+                                                        <option value="edit">Edit</option>
+                                                    </button>
+                                                    <option value="delete">Delete</option>
+                                                        
+                                                    </form>
+                                                </select>
+                                                <label for="floatingSelect<%= cat._id %>">Take your action</label>
+                                            </div>
+                                     </td>
+                                    </tr>
+                                 
+                                <% }) %>
+                            </tbody>
+                        </table>
+                        <div class="">
+                            <nav style="position: absolute;
+                            left: 50%;
+                            transform: translateX(-50%);">
+                                <ul class="pagination pagination-rounded mb-0">
+                                    <% if (currentPage > 1) { %>
+                                        <li class="page-item">
+                                            <a class="page-link" href="/pages?page=<%= currentPage - 1 %>" aria-label="Previous">
+                                                <span aria-hidden="true">&laquo;</span>
+                                            </a>
+                                        </li>
+                                    <% } %>
+                                    <% for (let i = 1; i <= totalPages; i++) { %>
+                                        <li class="page-item <%= i === currentPage ? 'active' : '' %>">
+                                            <a class="page-link" href="/pages?page=<%= i %>"><%= i %></a>
+                                        </li>
+                                    <% } %>
+                                    <% if (currentPage < totalPages) { %>
+                                        <li class="page-item">
+                                            <a class="page-link" href="/pages?page=<%= currentPage + 1 %>" aria-label="Next">
+                                                <span aria-hidden="true">&raquo;</span>
+                                            </a>
+                                        </li>
+                                    <% } %>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div> <!-- End Col -->
+                </div> <!-- End Row -->
+            </div> <!-- End Card Body -->
+        </div> <!-- End Card -->
+    </div> <!-- End Col -->
+</div> <!-- End Row -->
+
+<!-- Add New Event Modal -->
+<div class="modal fade" id="event-modal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form class="needs-validation" action="/app/add/pages" method="post" name="event-form" id="form-event" novalidate>
+                <div class="modal-header py-3 px-4 border-bottom-0">
+                    <h5 class="modal-title" id="modal-title">Event</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body px-4 pb-4 pt-0">
+                    <div class="mb-3">
+                        <label class="control-label form-label">page name</label>
+                        <input class="form-control" placeholder="Insert Category Name" type="text" name="title" required />
+                        <div class="invalid-feedback">Please provide a valid name</div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="control-label form-label">page link</label>
+                        <input class="form-control" placeholder="Insert Description" type="text" name="category" required />
+                        <div class="invalid-feedback">Please provide a valid link </div>
+                    </div>
+                    <div class="row">
+                        
+                        <div class="col-12 text-end">
+                            <button type="button" class="btn btn-light me-1" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-success" id="btn-save-event">Save</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div> <!-- End Modal Content -->
+    </div> <!-- End Modal Dialog -->
+</div> <!-- End Modal -->
