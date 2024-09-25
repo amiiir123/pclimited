@@ -1,6 +1,6 @@
 
 fetch('/menus_footer').then(response => response.json()).then(data=>{
-    console.log('Mydata :',data.menu)
+    
     const mydataMenu = data.menu
     const Footer = data.footer[0]
     const socialdata = data.footer[0].social
@@ -79,7 +79,7 @@ fetch('/menus_footer').then(response => response.json()).then(data=>{
     
     }
      function  menuPagesConfig(menus,container,test){
-        console.log(container)
+        
          menus.forEach(page => {
             if(test && (page.title == 'Login' || page.title == 'sign up') ){
 

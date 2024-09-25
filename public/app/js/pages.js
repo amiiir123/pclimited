@@ -22,7 +22,7 @@ function handleActionPage(event, cats){
     if (action === 'edit'){
         try{
 
-            console.log(cat._id)
+            
             window.location.href = `page-edit?${cat._id}`
         }catch(eet){
             window.location.href =  `pages`
@@ -37,14 +37,14 @@ function handleActionPage(event, cats){
                 'Content-Type':'application/json'
             },body: JSON.stringify({ cat })
         }).then(res=>{
-            console.log(res)
+            
             if(res.ok){
                 
                 document.getElementById(`categoryRow${cat._id}`).remove();
             }else{
                 alert('Failed to delete category')
             }
-        }).catch(err=> console.log("err000 :",err))
+        }).catch(err=> )
     }
 
 }

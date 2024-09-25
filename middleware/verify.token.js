@@ -8,7 +8,7 @@ const verifyLogin = (req, res, next) => {
     jwt.verify(token, process.env.JWT_SECRET_KEY , (err, user) => {
         if (err) return res.redirect(`${getBaseUrl(req)}/login`);
         req.user = user;
-        console.log("verfy login : ",req.user)
+        
         next();
     });
 
@@ -32,7 +32,7 @@ const  VerifyADMIN = (req, res, next) =>{
     try {
         const user = req.user; // we have access to the user object from the request
         const { role } = user; // extract the user role
-        console.log("ttttttttttttttt ",role)
+        
         if (role !== "ADMIN") {
             return res.status(401).json({
                 status: "failed",
@@ -53,7 +53,7 @@ const  VerifyMANAGER = (req, res, next) =>{
     try {
         const user = req.user; 
         const { role } = user; 
-        console.log("ttttttttttttttt ",role)
+        
         if (role == "ADMIN" || role == "MANAGER" ) {
             return next();
         }

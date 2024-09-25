@@ -27,7 +27,6 @@ const storage = multer.diskStorage({
     destination: function (req, file, cb) {
         const isImage = file.mimetype.startsWith('image/');
         const uploadPath = isImage ? imgDir2 : videoDir;
-        console.log("hhhhhhhhhhh :",uploadPath)
         cb(null, uploadPath);
     },
     filename: function (req, file, cb) {
@@ -86,7 +85,6 @@ function checkFileType(file, cb) {
     const mimetype = filetypes.test(file.mimetype);
 
     if (mimetype && extname) {
-        console.log("okkk")
         return cb(null, true);
     } else {
         cb('Error: Images and videos only!');
@@ -126,7 +124,6 @@ const updBlogs = async (req, res, next) => {
 
             upload.single('file')(req, res, async (err) => {
                 const { title, description, keywords, category, content,myimg } = req.body;
-                console.log("rq",req.body)
              
                 if (err) {
                     return res.status(400).json({ success: false, message: err.message });
@@ -136,7 +133,6 @@ const updBlogs = async (req, res, next) => {
                 }
                 //const isImage = thub.mimetype.startsWith('image/');
                 if(req.file){
-                    console.log("test")
                     const isImage = req.file.mimetype.startsWith('image/');
                     const url = `/uploads/${isImage ? 'imgs' : 'videos'}/${req.file.filename}`;
                     blog.thub = url ;
@@ -241,7 +237,6 @@ const updprojetcs = async (req,res)=>{
           } else {
 
 
-            console.log(req.body)
 
 
 
@@ -303,7 +298,6 @@ const updprojetcs = async (req,res)=>{
 
 }
 const delPro = async (req,res)=>{
-    console.log("testttttttt")
     const id2 = req.params.id;
     await Projectss.findByIdAndDelete(id2);
     res.redirect('/app/projects')
@@ -341,9 +335,6 @@ const getBlogs = async (req,res)=>{
 const addBlogs = async (req,res)=>{
     upload.single('file')(req, res, async (err) => {
         const {title,description,keywords,category,content} = req.body;
-        console.log("content", req.body)
-        console.log("req file :",req.file)
-        console.log("req  :",req)
         if (err) {
             return res.status(400).json({ success: false, message: err.message });
         }
@@ -353,7 +344,6 @@ const addBlogs = async (req,res)=>{
         //const isImage = thub.mimetype.startsWith('image/');
         const isImage = req.file.mimetype.startsWith('image/');
         const thub = `uploads/${isImage ? 'imgs' : 'videos'}/${req.file.filename}`;
-        console.log("url: ",thub)
         const newBlog = new Blog({
             title,
             keywords,
@@ -377,9 +367,7 @@ const delBlogs = async (req,res,next) => {
 }
 const addCat = async (req,res)=>{
     const {title , category} = req.body ;
-    console.log(req.body)
     const catcheck = await categoryy.findOne({name:title}) ;
-    console.log(catcheck)
     if (catcheck){
         res.status(500).json({message:"this category "})
     }
@@ -403,7 +391,6 @@ const getCat = async (req,res)=>{
     try {
         const totalItems = await categoryy.countDocuments();
         const categories = await categoryy.find().skip(skip).limit(itemsPerPage);
-        console.log(categories)
         res.render('categorys', {
             isCategorys:true,
             categories,
@@ -435,7 +422,6 @@ const updSec = async (req,res,next)=>{
     }
 }
 const updCat = async (req,res,next)=>{
-    console.log(req.body)
     const id2 = req.params.id;
     const cat = await categoryy.findById(id2)
     if(typeof req.body.isActive === 'boolean'){
@@ -462,10 +448,8 @@ const updCat = async (req,res,next)=>{
 const upPage = async (req, res, next) => {
     try {
         const id2 = req.params.id;
-        console.log("id2 : ",id2)
 
         const mypage = await menuPages.findById(id2);
-        console.log(mypage)
    
         if (!mypage) {
             return res.status(404).json({ message: 'Page not found' });
@@ -481,11 +465,8 @@ const upPage = async (req, res, next) => {
             if(oldContentImages == newContentImages == ""){
                 const imagesToDelete = oldContentImages.filter(src => !newContentImages.includes(src));
                 imagesToDelete.forEach(src => {
-                    console.log("hello :",src)
                     const filePath = path.join(imgDir, normalizePath(src));
-                    console.log(`Attempting to delete file at: ${filePath}`); // Debugging log
                     if (fs.existsSync(filePath)) {
-                        console.log(`Deleting file at: ${filePath}`); // Debugging log
                         fs.unlinkSync(filePath);
                     } else {
                         console.warn(`File not found: ${filePath}`); // Debugging log
@@ -510,9 +491,7 @@ const upPage = async (req, res, next) => {
 
 const addpage = async (req,res)=>{
     const {title , category} = req.body ;
-    console.log(req.body)
     const pagecheck = await menuPages.findOne({title:title}) ;
-    console.log(pagecheck)
     if (pagecheck){
         res.status(500).json({message:"this page already exist "})
     }

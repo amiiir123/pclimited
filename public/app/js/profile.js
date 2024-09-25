@@ -3,7 +3,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     // Function to update image URLs in buttons
     function updateImageUrls(images) {
-        console.log(images)
+        
         const modalImage = document.getElementById('modal-image');
         if (modalImage) {
             modalImage.src = images[8] || '';
@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
         .then(data => {
             if (data.length > 0) {
                 const images = data[0].images; // Get image URLs
-                console.log("vchecck",images)
+                
                 updateImageUrls(images);
             }
         })

@@ -76,18 +76,18 @@ $(document).ready(function() {
         var selectedCategory = $('#floatingSelect').val();
 
         // Get the content of the editor
-        console.log(content)
+        
         var content = quill.root.innerHTML;
         
         // Debugging: Log the content
-        console.log("Editor content:", content);
+        
 
         // Set the content to the hidden input field
         $('#categoryy').val(selectedCategory);
         $('#content').val(content);
         
         // Debugging: Log the hidden input value
-        console.log("Hidden input value:", $('#content').val());
+        .val());
 
         // Submit the form
         this.submit();
@@ -103,6 +103,6 @@ $(document).ready(function() {
         var selectedValue = $(this).val();
 
         // Log the selected value to the console
-        console.log("Selected Value:", selectedValue);
+        
     });
 });

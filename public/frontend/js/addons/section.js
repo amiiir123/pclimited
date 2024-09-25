@@ -13,7 +13,7 @@ fetch("/data", {
       /*
       ///
       function sectionSerData(mydata) {
-        console.log("hhhhhhhhh :", mydata);
+        
         const containerServices = document.getElementById("SectionServices");
         mydata.forEach((element) => {
           const myDiv = document.createElement("div");
@@ -184,9 +184,9 @@ fetch("/data", {
 
         `
      }
-     console.log("test ",data)
+     
      const mydata = data.About
-     console.log("test ",mydata)
+     
      function purchase(data){
         
 
@@ -337,7 +337,7 @@ fetch("/data", {
          `
      }
      function portfolio (){
-        console.log("Received daaata:", data.sectionData);
+        
 
         const  myDiv = document.getElementById('portfolio');
         const port = data.sectionData[4]
@@ -464,7 +464,7 @@ function allSection() {
   })
     .then((response) => response.json())
     .then((data) => {
-      console.log("azz", data);
+      
       /////////////////////////////
 
       const services = data.boxData;
@@ -878,7 +878,7 @@ function allSection() {
             
           sectionFunctions[funcName](element); // Dynamically calls the respective function
         } else {
-          console.log(`Function ${funcName} not found`);
+          
         }
           
         }
@@ -886,7 +886,7 @@ function allSection() {
 
       ///
       function sectionSerData(mydata) {
-        console.log("hhhhhhhhh :", mydata);
+        
         const containerServices = document.getElementById("SectionServices");
         mydata.forEach((element) => {
           const myDiv = document.createElement("div");
@@ -1031,7 +1031,7 @@ function allSection() {
         })
           .then((response) => response.json())
           .then((data) => {
-            console.log(data);
+            
       
             const allCat = document.getElementById("filters");
             const projects = document.getElementById("projects");
@@ -1135,7 +1135,7 @@ function images(){
     fetch("/imgs")
       .then((response) => response.json())
       .then((data) => {
-        console.log("testt: ", data.Assetss);
+        
         function changeFavicon(iconURL) {
           let link = document.querySelector("link[rel~='icon']");
           if (!link) {
@@ -1166,13 +1166,13 @@ function images(){
                 `app/uploads/imgs/landing/${ee.filename}`
               );
             }
-            //console.log("oll",test)
+            //
             //test.src = `app/uploads/imgs/landing/${ee.filename}`
           }
     
           const test = document.getElementById(`${ee.section}`);
-          console.log(ee.section)
-          console.log(test)
+          
+          
           if (test) {
             if (test.tagName === "IMG") {
               test.src = `/app/uploads/imgs/landing/${ee.filename}`;

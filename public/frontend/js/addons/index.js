@@ -5,7 +5,7 @@ fetch("/data", {
 })
   .then((response) => response.json())
   .then((data) => {
-    console.log("Received data:", data.boxData);
+    
     const services = data.boxData;
     const testimonialss = data.quData;
     const latestBlog = data.Blog;
@@ -34,7 +34,7 @@ fetch("/data", {
     });
     ///
     function sectionSerData(mydata) {
-      console.log("hhhhhhhhh :", mydata);
+      
       const containerServices = document.getElementById("SectionServices");
       mydata.forEach((element) => {
         const myDiv = document.createElement("div");

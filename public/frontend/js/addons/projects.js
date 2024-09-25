@@ -3,7 +3,7 @@ fetch(`/projects_Data`, {
 })
   .then((response) => response.json())
   .then((data) => {
-    console.log(data)
+    
     const allCat = document.getElementById("filters");
     const projects = document.getElementById("projects");
     data.category.forEach((cat) => {

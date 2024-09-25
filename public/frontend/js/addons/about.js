@@ -5,12 +5,12 @@ fetch("/data", {
 })
 .then(response => response.json())
 .then(data => {
-  console.log("Received data:", data);
+  
   
   // Check if boxData is present and is an array
   const services = data.boxData;
   const about = data.About;
-  console.log("services : ",services)
+  
   function renderServices(services) {
     const container = document.getElementById("container-box");
     

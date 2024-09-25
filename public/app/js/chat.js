@@ -23,7 +23,7 @@
     function displayMessages(messages,Me,receiver) {
       chat.style.display = 'block'
 
-      console.log("hhhh :",messages)
+      
       const simpleBarContent = chatMessages.querySelector('.simplebar-content');
 
       if(messages == false){
@@ -31,11 +31,11 @@
       }else{
         simpleBarContent.innerHTML = '';
         messages.forEach(msg => {
-            console.log("msg : ",msg)
+            
             const messageElement = document.createElement('li');
-            console.log('me :',Me)
-            console.log('msg.sender._idhhhhhhhhhhhhhhh :',msg.sender)
-            console.log('msg.receiver._id :',msg.receiver._id)
+            
+            
+            
             messageElement.classList.add('clearfix',`${msg.sender._id == Me ? 'me': 'odd'}`);
             messageElement.innerHTML = `
               <div class="chat-avatar">
@@ -89,11 +89,11 @@
       fetch('/app/area1')
       .then(response => response.json())
       .then(data => {
-        console.log(data)
+        
         const simpleBarContent = cardSim.querySelector('.simplebar-content');
         simpleBarContent.innerHTML = ""
         data.userss.forEach(msg => {
-                console.log(msg)
+                
             const messageElement = document.createElement('a');
             messageElement.classList.add('text-body',"user-item");
             messageElement.setAttribute('data-user-name',`${msg.receiver == data.Me ? msg.senderDetails.fullName : msg.receiverDetails.fullName } ` )
@@ -115,9 +115,9 @@
             </div>
             `;
 
-            console.log("barrr:",simpleBarContent)
+            
            if (simpleBarContent) {
-              console.log("test 1",messageElement)
+              
               simpleBarContent.appendChild( messageElement);
             } else {
                console.error('SimpleBar content container not found!');
@@ -126,13 +126,13 @@
           });
 
           simpleBarContent.addEventListener('click', function(event) {
-            console.log(simpleBarContent)
+            
             event.preventDefault()
             const userItem = event.target.closest('.user-item');
-            console.log(userItem)
+            
             if (userItem) {
                 const userId = userItem.getAttribute('data-user-id');
-                console.log('User ID:', userId);
+                
                 fetchUserMessages(userId)
             }
           });
@@ -156,9 +156,9 @@
       })
       .then(response2 => response2.json())
       .then(data2 => {
-        console.log("myarray222 :",data2.users2)
+        
         data2.users2.forEach(user => {
-            console.log(user)
+            
             const messageElement = document.createElement('option');
             messageElement.setAttribute('value',user._id) //message to 
             messageElement.innerHTML = `${user.fullName}(${user.role})`;
@@ -175,10 +175,10 @@
     fetchUsersselect();
     function handlAreaMessages(event){
 
-      console.log("toooot",event.target)
+      
       const data = event.target;
       const displayValue = data.getAttribute('data-display');
-      console.log(displayValue)
+      
       if(displayValue == "received"){
         fetchUsers(); 
       }
@@ -186,7 +186,7 @@
       //fetchUserMessages(userId)
       /*
       try{
-        console.log("userId handl:",userId)
+        
         if(userId == chatReciever.value){
           chatInput.value = "";
           chatReciever.value = userId;
@@ -199,16 +199,16 @@
 
   
       }catch(eet){
-        console.log("our",eet)
+        
       }*/
   } 
     function handlMessageSend(event){
-      console.log(event.target)
+      
       const userId = event.target.value;
       fetchUserMessages(userId)
       /*
       try{
-        console.log("userId handl:",userId)
+        
         if(userId == chatReciever.value){
           chatInput.value = "";
           chatReciever.value = userId;
@@ -221,7 +221,7 @@
 
   
       }catch(eet){
-        console.log("our",eet)
+        
       }*/
   } 
   const userSelect = document.getElementById("userSelect");
@@ -242,7 +242,7 @@
         };
   
         // Send the message object as JSON
-        console.log(JSON.stringify(messageData))
+        )
         fetch('/app/sendMessage', {
           method: 'POST',
           headers: {
@@ -267,14 +267,14 @@
   ///area search
   jQuery(document).ready(function($) {
     $('.live-search-box').on('keyup', function() {
-        console.log("test1", $(this).val());
+        .val());
   
         var searchTerm = $(this).val().toLowerCase(); // Convert the search term to lowercase for case-insensitive search
   
         $('.user-item').each(function(idx, item) {
             var name = $(item).attr("data-user-name").toLowerCase(); // Convert the name to lowercase for case-insensitive search
-            console.log("item", item);
-            console.log("name", name);
+            
+            
   
             if (name.indexOf(searchTerm) >= 0 || searchTerm.length < 1) {
                 $(item).show(); // Use `$(item)` to refer to the current item being looped

@@ -1,6 +1,6 @@
 function previewdata(event,src) {
     const selectedValue = event.target.value;
-    console.log(selectedValue)
+    
     const mybutton = document.getElementById('btn-new-event')
     mybutton.classList.remove("btn-success");
     mybutton.classList.add("btn-danger");
@@ -13,7 +13,7 @@ function previewdata(event,src) {
         .then(response => response.json())
         .then(data => {
             const mydata = data.project
-            console.log(data)
+            
           const imgPreview = document.getElementById(`${src}`);
           if (mydata.filename) {
             // Update the imgPreview with the new image URL
@@ -41,7 +41,7 @@ function previewdata(event,src) {
 
           document.getElementById('projectTitle').setAttribute('value',`${mydata.title}`)
           document.getElementById('projectDesc').innerHTML = `${mydata.description}`
-          console.log(document.getElementById('section'))
+          )
 
 
           //
@@ -70,7 +70,7 @@ function previewdata(event,src) {
   
     // Delete project function (make an AJAX request or form submission)
     function deleteProj(id) {
-      console.log('Deleting project with ID:', id);
+      
 
       const form =document.getElementById('projectForm')
       form.action = `deletePro/${id}`
@@ -94,7 +94,7 @@ function previewdata(event,src) {
 
 
   document.getElementById('btn-new-event').addEventListener('click', function(event) {
-    console.log(event.target)
+    
     event.target.classList.remove("btn-danger");
     event.target.classList.add("btn-success");
     
@@ -128,7 +128,7 @@ let keywordsArray = [];
   const keywordInput = document.getElementById('typeofproject');
   const wordList = document.getElementById('wordList');
   const keywordsArrayInput = document.getElementById('keywordsArray');
-  console.log(keywordInput, wordList, keywordsArrayInput);
+  
 
   // Add keyword to the list when pressing Enter
   keywordInput.addEventListener('keypress', function (e) {

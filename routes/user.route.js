@@ -125,7 +125,7 @@ const {UserSettings} = require('../models/utils.md');
 
 // Route to get user settings
 router.get('/themesettings', verifyLogin.verifyLogin, async (req, res) => {
-  console.log("ccccccccccccccccc",req.user.id)
+  
     const userId = req.user.id;  // Assuming req.user contains the logged-in user's info
     try {
         const settings = await UserSettings.findOne({ userId });
@@ -139,7 +139,7 @@ router.get('/themesettings', verifyLogin.verifyLogin, async (req, res) => {
 router.post('/themesettings/updatee', verifyLogin.verifyLogin, async (req, res) => {
     const userId = req.user.id;
     const { colorScheme } = req.body;
-    console.log("wwelcommme")
+    
         try {
         const settings = await UserSettings.findOneAndUpdate(
             { userId },

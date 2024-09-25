@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
         .then(response => response.json())
         .then(data => {
             const mydata = data.sectionDatas
-            console.log(mydata)
+            
             const container = document.getElementById('allSection')
             mydata.forEach(ee=>{
                 const mydiv = document.createElement('div')
@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Function to update image URLs in buttons
     function updateImageUrls(images) {
-        console.log("test",images)
+        
         const buttons = document.querySelectorAll('button[data-bs-toggle="modal"]');
         buttons.forEach((button, index) => {
             
@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
         .then(data => {
             if (data.length > 0) {
                 const images = data[0].images; // Get image URLs
-                console.log("vchecck",images)
+                
                 updateImageUrls(images);
             }
         })
@@ -75,7 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 function handleSwitchChange(event, id) {
     const isActive = event.target.checked;
-    console.log("my id ,", id , isActive)
+    
     fetch(`section/update/${id}`, {
       method: "POST",
       headers: {

@@ -1,6 +1,6 @@
 function handleSwitchChange(event, id) {
   const isActive = event.target.checked;
-  console.log("my id ,", id , isActive)
+  
   fetch(`cat/update/${id}`, {
     method: "POST",
     headers: {
@@ -19,7 +19,7 @@ function handleAction(event, cats) {
   event.preventDefault();
   const action = event.target.value;
   const cat = JSON.parse(cats);
-  console.log(cat);
+  
   if (action === "edit") {
     document.querySelector('#event-modal input[name="title"]').value = cat.name;
     document.querySelector('#event-modal input[name="category"]').value =
@@ -39,15 +39,15 @@ function handleAction(event, cats) {
       body: JSON.stringify({ cat }),
     })
       .then((res) => {
-        console.log(res);
+        
         if (res.ok) {
-          console.log("categoryRow${id}");
-          console.log(document.getElementById(`categoryRow${cat._id}`));
+          
+          );
           document.getElementById(`categoryRow${cat._id}`).remove();
         } else {
           alert("Failed to delete category");
         }
       })
-      .catch((err) => console.log("err000 :", err));
+      .catch((err) => );
   }
 }

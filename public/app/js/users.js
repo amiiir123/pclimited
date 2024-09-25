@@ -5,8 +5,8 @@ function handleActionEdit(event, user) {
     const action = event.target.classList;
     const us = JSON.parse(decodeURIComponent(user));
     if(action[action.length - 1] === 'edit'){
-        console.log(us)
-        console.log(us.email)
+        
+        
         try {
             const modal = document.getElementById('event-modal')
             modal.querySelector('input[name="fullName"]').value = us.fullName || '';
@@ -18,7 +18,7 @@ function handleActionEdit(event, user) {
             const checkbox = document.getElementById('switch');
             const label = document.querySelector('label[for="switch"]');
             if (checkbox && label) {
-                console.log('us.isActive :',us.isActive)
+                
                 checkbox.setAttribute('id', `switch${us._id}`);
                 label.setAttribute('for', `switch${us._id}`);
                 checkbox.checked = us.isActive;
@@ -43,14 +43,14 @@ function handleActionEdit(event, user) {
                 'Content-Type':'application/json'
             },body: JSON.stringify({ us })
         }).then(res=>{
-            console.log(res)
+            
             if(res.ok){
-                console.log("user${id}")
-                console.log(document.getElementById(`user${us._id}`))
+                
+                )
                 document.getElementById(`user${us._id}`).remove();
             }else{
                 alert('Failed to delete user')
             }
-        }).catch(err=> console.log("err000 :",err))
+        }).catch(err=> )
     }
 }

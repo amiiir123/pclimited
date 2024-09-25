@@ -3,7 +3,7 @@ fetch(`/contact_Data`,{
 })
 .then(response=>response.json())
 .then((data) => {
-    console.log(data)
+    
     const company = data.comInfo[0];
 
     document.getElementById('infoContainer').innerHTML = `

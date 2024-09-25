@@ -52,7 +52,7 @@ app.post('/contactForm', async (req, res) => {
 
       // Send email using nodemailer
       await transporter.sendMail(mailOptions);
-      console.log('Email sent to your destination email address.');
+      
 
       res.status(200).send('Thank you for your message! We will get back to you soon.');
   } catch (error) {
@@ -101,7 +101,7 @@ app.get('/projects',async (req,res)=>{
 
 app.get('/post/:id',async (req,res)=>{
   const post = await Blog.findById(req.params.id)
-  console.log("hiia",post)
+  
   const blogg = await Blog.find({isActive: true}).limit(3).sort({ createdAt: -1 })
   const category = await categoryy.find({isActive: true})
 
@@ -112,7 +112,7 @@ app.get('/post/:id',async (req,res)=>{
 })
 app.get('/blog/:id',async (req,res)=>{
   const post = await Blog.findById(req.params.id)
-  console.log("hiia",post)
+  
   res.render('./frontend/blog-post',{post,isPost:true})
 
 

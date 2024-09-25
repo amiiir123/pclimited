@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
     .then((data) => {
       if (data.length > 0) {
         const images = data[0].images; // Get image URLs
-        console.log("vchecck", images);
+        
         updateImageUrls(images);
       }
     })
@@ -54,7 +54,7 @@ const showData = function (test, variable) {
       let myDiv1 = document.getElementById('optional')
       let mylink = document.getElementById('optionaLink')
       let link = document.getElementById('link')
-      console.log(myDiv1)
+      
 
 
     
@@ -117,12 +117,12 @@ document.getElementById('optional').setAttribute('class', 'd-none');
 function showServiceDetails(type,data) {
 
     const mydata = JSON.parse(decodeURIComponent(data))
-    console.log("gggggggg",data)
+    
     try{
 
         showData(mydata, type);
     }catch(err){
-        console.log(err)
+        
     }
   
 }
@@ -132,7 +132,7 @@ let keywordsArray = [];
   const keywordInput = document.getElementById('keywordInput');
   const wordList = document.getElementById('wordList');
   const keywordsArrayInput = document.getElementById('keywordsArray');
-  console.log(keywordInput, wordList, keywordsArrayInput);
+  
 
   // Add keyword to the list when pressing Enter
   keywordInput.addEventListener('keypress', function (e) {

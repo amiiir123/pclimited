@@ -21,11 +21,11 @@
       fetch('/area1')
       .then(response => response.json())
       .then(data => {
-        console.log(data)
+        
         const simpleBarContent = cardSim.querySelector('.simplebar-content');
-        console.log("myarray :",data.userss)
+        
         data.userss.forEach(msg => {
-                console.log(msg)
+                
             myname.innerHTML= `${msg.receiver.fullName}`
             const messageElement = document.createElement('a');
             messageElement.classList.add('text-body',"user-item");
@@ -47,9 +47,9 @@
             </div>
             `;
 
-            console.log("barrr:",simpleBarContent)
+            
            if (simpleBarContent) {
-              console.log("test 1",messageElement)
+              
               simpleBarContent.appendChild( messageElement);
             } else {
                console.error('SimpleBar content container not found!');
@@ -58,13 +58,13 @@
           });
 
           simpleBarContent.addEventListener('click', function(event) {
-            console.log(simpleBarContent)
+            
             event.preventDefault()
             const userItem = event.target.closest('.user-item');
-            console.log(userItem)
+            
             if (userItem) {
                 const userId = userItem.getAttribute('data-user-id');
-                console.log('User ID:', userId);
+                
                 fetchUserMessages(userId)
             }
           });
@@ -87,9 +87,9 @@
       })
       .then(response2 => response2.json())
       .then(data2 => {
-        console.log("myarray222 :",data2.users2)
+        
         data2.users2.forEach(user => {
-            console.log(user)
+            
             const messageElement = document.createElement('option');
             messageElement.setAttribute('value',user._id) //message to 
             messageElement.innerHTML = `${user.fullName}`;
@@ -103,13 +103,13 @@
     //area 1
     
     function displayMessages(messages,Me) {
-        console.log("hhhh :",messages)
+        
         chatMessages.innerHTML = '';
         messages.forEach(msg => {
-            console.log("msg : ",msg)
+            
             const messageElement = document.createElement('li');
-            console.log('me :',Me)
-            console.log('msg.sender._id :',msg.sender._id)
+            
+            
             messageElement.classList.add('clearfix',`${msg.sender._id == Me ? 'me': 'odd'}`);
             messageElement.innerHTML = `
               <div class="chat-avatar">
@@ -142,10 +142,10 @@
 
 
     function handlMessageSend(event){
-      console.log(event.target)
+      
       const userId = event.target.value;
       try{
-        console.log("userId handl:",userId)
+        
         if(userId == chatReciever.value){
           chatInput.value = "";
           chatReciever.value = userId;
@@ -158,7 +158,7 @@
 
   
       }catch(eet){
-        console.log("our",eet)
+        
   
       }
   } 
@@ -176,7 +176,7 @@
         };
   
         // Send the message object as JSON
-        console.log(JSON.stringify(messageData))
+        )
         fetch('/app/sendMessage', {
           method: 'POST',
           headers: {

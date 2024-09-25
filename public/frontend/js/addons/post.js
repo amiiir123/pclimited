@@ -6,7 +6,7 @@ fetch(`/post/${postId}`, {
 })
 .then((response) => response.json())
 .then((data) => {
-        console.log('mydata :',data.post)
+        
     
         const mypost = data.post;
         function formatDate(timestamp) {

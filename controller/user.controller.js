@@ -11,7 +11,6 @@ const Blacklist = require("../models/blacklist");
 const events = require("../models/event");
 const sendEmail = require("../utils/sendEmail");
 const saltRounds = 10;
-console.log("what");
 
 
 const path = require('path');
@@ -35,7 +34,6 @@ const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     const isImage = file.mimetype.startsWith("image/");
     const uploadPath = isImage ? imgProfile : videoDir;
-    console.log("hhhhhhhhhhh :", uploadPath);
     cb(null, uploadPath);
   },
   filename: function (req, file, cb) {
@@ -66,7 +64,6 @@ function checkFileType(file, cb) {
   const mimetype = filetypes.test(file.mimetype);
 
   if (mimetype && extname) {
-    console.log("okkk");
     return cb(null, true);
   } else {
     cb("Error: Images and videos only!");
@@ -77,17 +74,17 @@ function checkFileType(file, cb) {
 
 //register
 const register = asyncWrapper(async (req, res, next) => {
-  console.log(req.body);
+
 
   const { fullName, email, password, role } = req.body;
-  console.log(fullName);
+  
 
   const oldUser = await users.findOne({ email: email });
   if (oldUser) {
     //error already exist + return
     return res.status(500).json({error: 'this email already exist !'});
   }
-  console.log("test");
+
   bcript.genSalt(saltRounds, async function (err, salt) {
     bcript.hash(password, salt, async (err, hash) => {
       const newUser = new users({
@@ -176,10 +173,8 @@ const Logout = async (req, res) => {
   res.end();
 };
 const forogotPassword = async (req, res, next) => {
-  console.log(req.body.emailaddress)
   const user = await users.findOne({ email: req.body.emailaddress });
   
-  console.log(user)
 
   if (!user) {
     return res.status(404).json({ error: "User does not exist" });
@@ -196,13 +191,11 @@ const forogotPassword = async (req, res, next) => {
   await user.save();
   const message = `Hi ${user.fullName},\n  We received a request to reset the password on your Pc Limited Account. \n ${resetCode} \n Enter this code to complete the reset. \n Thanks for helping us keep your account secure.\n The Pc Limited Team`;
   try {
-    console.log("test2222");
     await sendEmail({
       email: user.email,
       subject: "Your password reset code (valide for 10 min)",
       message,
     });
-    console.log("sucees message");
   } catch (err) {
     user.passwordResetCode = undefined;
     user.passwordResetExpire = undefined;
@@ -215,7 +208,6 @@ const forogotPassword = async (req, res, next) => {
   return res.json({redirectUrl:"/app/confirm"});
 };
 const verifyPassResetCode = async (req, res, next) => {
-  console.log("test0", req.session.emailaddress);
   const hashedResetCode = crypto
     .createHash("sha256")
     .update(req.body.resetCode)
@@ -237,7 +229,6 @@ const verifyPassResetCode = async (req, res, next) => {
 const resetPassword = async (req, res, next) => {
   const user = await users.findOne({ email: req.session.emailaddress });
   
-  console.log(user);
   if (!user) {
     return res.status(500).json({error: "no user with this email"});
   }
@@ -274,21 +265,17 @@ const delUser = async (req, res) => {
 };
 
 const upduserAvatar = async (req, res) => {
-  console.log("test")
   upload.single("file")(req, res, async (err) => {
     const id2 = req.body.id;
     const user = await users.findById(id2);
-    console.log("test2")
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
   
     // If no file is uploaded, keep the old avatar
-    console.log(req.file)
     if (req.file) {
       const isImage = req.file.mimetype.startsWith("image/");
       const url = `uploads/${isImage ? "imgs" : "videos"}/profiles/${req.file.filename}`;
-      console.log(user.avatar)
       user.avatar = url;
       await user.save();
       const token = jwt.sign(
@@ -318,7 +305,6 @@ const upduserAvatar = async (req, res) => {
 
 };
 const updUser = async (req, res, next) => {
-  console.log(req)
   try {
     // Wrap upload.single in a promise for better async handling
     const id2 = req.body.id;
@@ -368,7 +354,6 @@ const updUser = async (req, res, next) => {
 //dashboared = ===========================================================================
 const addEvent = async (req, res) => {
   const { title, category } = req.body;
-  console.log(req.body);
   try {
     const newEvent = new events({
       title,
@@ -384,7 +369,6 @@ const addEvent = async (req, res) => {
 };
 const getEvent = async (req, res) => {
   const eventss = await events.find({}, { __v: false }, { _id: false });
-  console.log(eventss);
   res.status(200).json({ data: eventss });
 };
 
@@ -393,7 +377,6 @@ const getEvent = async (req, res) => {
 // commpany settings
 const { Company } = require("../models/company.md");
 const roles = require("../utils/userRoles");
-const { default: next } = require("next");
 
 const updCompany = async (req, res) => {
   try {
@@ -415,12 +398,10 @@ const updCompany = async (req, res) => {
       socialSkype,
       socialGithub,
     } = req.body;
-    console.log("test company :", req.body);
 
     // Create a new company document
     const mycompanys = await Company.find({});
     const mycompany = mycompanys[0];
-    console.log("from db  :", mycompany);
 
     mycompany.name = name;
     mycompany.phoneNumber = phoneNumber;
@@ -443,14 +424,12 @@ const updCompany = async (req, res) => {
     // Redirect or respond as needed
     res.redirect("/app/settings"); // Adjust the redirect or response as needed
   } catch (error) {
-    console.error(error);
     res.status(500).send("Internal Server Error");
   }
 };
 
 // commpany users
 const getUsers = async (req, res) => {
-  console.log(req.query);
   /*
     const page = parseInt(req.query.page) || 1;
     const itemsPerPage = parseInt(req.query.itemsPerPage) || 8;
@@ -508,8 +487,6 @@ const exportss = async (req, res) => {
 //messages -- chat
 
 const getMessage = async (req, res) => {
-  console.log("receiver :", req.user.id);
-  console.log("sender :", req.params.userId); ///sender of messg in chat
 
   //const message = await Message.findById(req.params.userId)
   if (!req.user) return res.status(401).send("Unauthorized");
@@ -522,7 +499,6 @@ const getMessage = async (req, res) => {
   })
     .populate("sender receiver")
     .sort({ timestamp: 1 });
-  console.log("get success :", messages);
   if (messages == []) {
     res.json({ messages: false, Me: req.user.id, receiver: req.params.userId });
   } else {
@@ -531,10 +507,8 @@ const getMessage = async (req, res) => {
 };
 
 const sendMessage = async (req, res) => {
-  console.log("test send ", req.user);
   if (!req.user) return res.status(401).send("Unauthorized");
   const { message, receiverId } = req.body;
-  console.log("body send ", req.body);
   const newMessage = new Message({
     sender: req.user.id,
     receiver: receiverId,
@@ -546,7 +520,7 @@ const sendMessage = async (req, res) => {
 };
 
 const getMusers = async (req, res) => {
-  console.log("test,req.user :", req.user);
+  
   if (!req.user) return res.status(401).send("Unauthorized");
 
   try {
@@ -601,11 +575,11 @@ const getMusers = async (req, res) => {
     ]);
     // Combine both received and sent messages
     const allMessages = [...receivedMessages, ...sentMessages];
-    console.log("allMessages :", allMessages);
+    
 
     // Sort all messages by timestamp descending
     allMessages.sort((a, b) => b.timestamp - a.timestamp);
-    console.log("allMessages soreted :", allMessages);
+    
 
     // Create a map to store the latest message for each unique conversation
     const uniqueConversations = new Map();
@@ -632,7 +606,7 @@ const getMusers = async (req, res) => {
 };
 
 const getMsent = async (req, res) => {
-  console.log("test,req.user :", req.user);
+  
   if (!req.user) return res.status(401).send("Unauthorized");
 
   const userss = await Message.aggregate([
@@ -664,7 +638,7 @@ const getMsent = async (req, res) => {
     },
   ]);
 
-  console.log("my users : ", userss);
+  
   res.json({ userss });
 };
 //messages -- chat

@@ -96,9 +96,7 @@ function rightSide (){
             // Set the checkboxes based on saved settings
            
             if (data.colorScheme === 'dark') {
-              document.getElementById('dark-mode-check').checked = true ;
-              console.log(document.getElementById('dark-mode-check'))
-            
+              document.getElementById('dark-mode-check').checked = true ;            
             } else {
                 document.getElementById('light-mode-check').checked = true;
             }

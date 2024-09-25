@@ -2,14 +2,14 @@ fetch("/app/login_assets", {
     method: "GET",
   }).then(response => response.json())
   .then((data) => {
-    console.log(data)
+    
     document.getElementById('logo').src = `uploads/imgs/landing/${data.logo.filename}`
     const elements = document.getElementsByClassName('auth-fluid');
-    console.log(elements)
+    
     for (let i = 0; i < elements.length; i++) {
         elements[i].style.background = `url('uploads/imgs/landing/${data.login.filename}') center`;
     }
-  }).catch((err)=>{console.log(err)})
+  }).catch((err)=>{})
   
 
   function handleLogin(event) {
@@ -43,7 +43,7 @@ fetch("/app/login_assets", {
       
     })
     .catch((err) => {
-      console.log(err);
+      
     });
   }
   function handlRegister(event) {
@@ -62,7 +62,7 @@ fetch("/app/login_assets", {
     })
     .then(response => response.json())
     .then((data) => {
-      console.log(data)
+      
 
 
 
@@ -83,7 +83,7 @@ fetch("/app/login_assets", {
       
     })
     .catch((err) => {
-      console.log(err);
+      
     });
   }
   
@@ -101,7 +101,7 @@ fetch("/app/login_assets", {
       })
       .then(response => response.json())
       .then((data) => {
-        console.log(data)
+        
         if (data.redirectUrl) {
           window.location.href = data.redirectUrl;
         } else if (data.error) {
@@ -117,7 +117,7 @@ fetch("/app/login_assets", {
         
       })
       .catch((err) => {
-        console.log(err);
+        
       });
     }
    
@@ -135,7 +135,7 @@ fetch("/app/login_assets", {
       })
       .then(response => response.json())
       .then((data) => {
-        console.log(data)
+        
         if (data.redirectUrl) {
           window.location.href = data.redirectUrl;
         } else if (data.error) {
@@ -152,7 +152,7 @@ fetch("/app/login_assets", {
         
       })
       .catch((err) => {
-        console.log(err);
+        
       });
   
     }
@@ -170,7 +170,7 @@ fetch("/app/login_assets", {
       })
       .then(response => response.json())
       .then((data) => {
-        console.log(data)
+        
         if (data.redirectUrl) {
           window.location.href = data.redirectUrl;
         } else if (data.error) {
@@ -187,7 +187,7 @@ fetch("/app/login_assets", {
         
       })
       .catch((err) => {
-        console.log(err);
+        
       });
   
     }

@@ -32,8 +32,8 @@ function handleBlog(event, blogs){
         })
    .then(response => {
        if(response.ok){
-               console.log("categoryRow${id}")
-               console.log(document.getElementById(`categoryRow${blog}`))
+               
+               )
                document.getElementById(`categoryRow${blog}`).remove();
            }else{
                alert('Failed to delete category')

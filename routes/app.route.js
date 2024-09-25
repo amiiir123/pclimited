@@ -143,7 +143,7 @@ app.get(
   async (req, res) => {
     const categories = await categoryy.find({});
     const queryString = req.url.split("?")[1];
-    console.log(queryString);
+    
     let blog = await Blog.findOne({ _id: queryString });
     if (blog == null) {
       blog = {};
@@ -158,7 +158,7 @@ app.get(
   async (req, res) => {
     const categories = await categoryy.find({});
     const blog = req.params.id;
-    //console.log(blog)
+    //
     res.render("add-blog", { categories, blog, isSnow: true, user: req.user });
   }
 );
@@ -184,7 +184,7 @@ app.get('/categors',async (req,res)=>{
     try {
         const totalItems = await categoryy.countDocuments();
         const categories = await categoryy.find().skip(skip).limit(itemsPerPage);
-        console.log(categories)
+        
         res.render('categorys', {
             categories,
             currentPage: page,
@@ -213,7 +213,7 @@ app.get(
     const boxDatas = await boxData.find();
     const quDatas = await quData.find();
     const Abouts = await About.find();
-    console.log(sectionDatas);
+    
     res.render("edit-landing", {
       captions: captions,
       services: services,
@@ -246,12 +246,12 @@ app.post(
     const variable = req.params.variable;
     if (variable == "section") {
       const { id, title, description, smtitle, link, keywordsArray } = req.body;
-      console.log("yeaaaaaaaaaah", keywordsArray);
+      
       let keywordsArrayParsed;
       if (keywordsArray) {
         keywordsArrayParsed = JSON.parse(keywordsArray);
       } else {
-        console.log("salah");
+        
         keywordsArrayParsed = ["null", "xxs"];
       }
 
@@ -273,7 +273,7 @@ app.post(
         $set: { features: featuress },
       });
     } else if (variable == "qu") {
-      console.log(req.body);
+      
       const { id, title, author, description } = req.body;
       await quData.findByIdAndUpdate(id, {
         title: title,
@@ -323,7 +323,7 @@ app.get("/confirm", verifyLogin.verifyNotLoggedIn, (req, res) => {
   });
 });
 app.get("/resetpass", verifyLogin.verifyNotLoggedIn, (req, res) => {
-  console.log("resre", req.session.emailaddress);
+  
   if (!req.session.emailaddress) {
     return res.redirect("/app/recoverypassword"); // Or any other route for missing email address
   }
@@ -351,7 +351,7 @@ const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     const isImage = file.mimetype.startsWith("image/");
     const uploadPath = isImage ? imgDir2 : videoDir;
-    console.log("hhhhhhhhhhh :", uploadPath);
+    
     cb(null, uploadPath);
   },
   filename: function (req, file, cb) {
@@ -381,7 +381,7 @@ function checkFileType(file, cb) {
   const mimetype = filetypes.test(file.mimetype);
 
   if (mimetype && extname) {
-    console.log("okkk");
+    
     return cb(null, true);
   } else {
     cb("Error: Images and videos only!");
@@ -389,7 +389,7 @@ function checkFileType(file, cb) {
 }
 // Upload endpoint
 app.post("/upload", (req, res) => {
-  console.log("test");
+  
   upload.single("file")(req, res, (err) => {
     if (err) {
       return res.status(400).json({ success: false, message: err.message });
@@ -457,7 +457,7 @@ app.post(
   verifyLogin.VerifyMANAGER,
   async (req, res) => {
     const { title, link } = req.body;
-    console.log(req.body);
+    
     const id = req.params.id;
     const oMenu = await menu.findById(id);
 
@@ -491,7 +491,7 @@ app.post(
     const { title, link } = req.body;
     const checkMenu = await menu.findOne({ title: title });
     if (checkMenu) {
-      console.log("testttt");
+      
       return res.redirect("/app/menu-builder");
     }
     const newMenu = new menu({
@@ -529,7 +529,7 @@ app.get("/currentUser", verifyLogin.verifyLogin, async (req, res) => {
 });
 app.get("/profile", verifyLogin.verifyLogin, async (req, res) => {
   const user = await useers.findById(req.user.id);
-  console.log(user);
+  
 
   res.render("profile", { title: "profile", user, isProfile: true });
 });
@@ -580,7 +580,7 @@ app.get(
   verifyLogin.VerifyMANAGER,
   async (req, res) => {
     const queryString = req.url.split("?")[1];
-    console.log(queryString);
+    
     let mypage = await menuPages.findOne({ _id: queryString });
     if (mypage == null) {
       mypage = {};
@@ -646,9 +646,9 @@ app.post(
 
       if (req.file.mimetype === "application/json") {
         // Handle JSON file
-        console.log(" hhhhhhhhhhhhhhhhhhhhhh");
+        
         const data = JSON.parse(fs.readFileSync(filePath, "utf-8"));
-        console.log(useers);
+        
         await useers.insertMany(data);
       } else if (req.file.mimetype === "text/csv") {
         // Handle CSV file
@@ -660,7 +660,7 @@ app.post(
           })
           .on("end", async () => {
             await useers.insertMany(users);
-            console.log("CSV file successfully processed");
+            
           });
       } else {
         return res.status(400).send("Unsupported file type");
