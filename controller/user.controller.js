@@ -393,7 +393,6 @@ const getEvent = async (req, res) => {
 // commpany settings
 const { Company } = require("../models/company.md");
 const roles = require("../utils/userRoles");
-const { default: next } = require("next");
 
 const updCompany = async (req, res) => {
   try {
