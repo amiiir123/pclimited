@@ -144,7 +144,7 @@ fetch('/menus_footer').then(response => response.json()).then(data=>{
 
     
 
-    customPlugin(Footer);
+    //customPlugin(Footer);
     
     footerConfig(Footer)
     menuPagesConfig(mydataMenu,containerMenu,false)
