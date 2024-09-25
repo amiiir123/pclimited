@@ -63,6 +63,7 @@ app.use((req, res, next) => {
 });
 
 // Routes
+app.use(express.static('public'))
 app.use('/', require('./routes/frontend.route'));
 app.use('/app', require('./routes/app.route'));
 app.use('/app', require('./routes/user.route'));
