@@ -1,14 +1,9 @@
 {
   "name": "version1",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-<<<<<<< HEAD
-    "start": "nodemon server.js",
-=======
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
->>>>>>> 6fba40c7ee3f29cee80662587d89225d3d09f074
     "build": "echo 'No build step required"
   },
   "keywords": [],
