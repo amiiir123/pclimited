@@ -175,7 +175,7 @@ Partners carousel
         $('#preloader').fadeOut('normal', function() {
             $(this).remove(); 
         });
-    }, 1500); 
+    }, 2000); 
 });
 
 /*------------------------------------
