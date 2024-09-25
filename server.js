@@ -61,6 +61,7 @@ app.use((req, res, next) => {
     res.set('Cache-Control', 'no-store');
     next();
 });
+app.set('views', './views');
 
 // Routes
 app.use(express.static('public'))
